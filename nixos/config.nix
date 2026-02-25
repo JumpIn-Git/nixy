@@ -44,6 +44,7 @@
       ripgrep
       fd
       btop
+      inputs.zen-browser.packages.${system}.default
     ];
   };
 

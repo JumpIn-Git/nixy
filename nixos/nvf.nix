@@ -3,7 +3,33 @@
   programs.nvf = {
     enable = true;
     settings.vim = {
+      statusline.lualine.enable = true;
+      clipboard = {
+        enable = true;
+        registers = "unnamedplus";
+      };
+      diagnostics = {
+        enable = true;
+        config = {
+          virtual_lines.enable = true;
+          underline = true;
+        };
+      };
       keymaps = [
+        #{ "<leader>/", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
+        {
+          key = "<leader>/";
+          mode = "n";
+          desc = "Grep";
+          action = "<cmd>FzfLua live_grep<cr>";
+        }
+        {
+          key = "<leader><space>"
+          ;
+          mode = "n";
+          desc = "Find Files";
+          action = "<cmd>FzfLua files<cr>";
+        }
         {
           key = "<leader>e";
           mode = "n";
@@ -45,6 +71,10 @@
         nix = {
           enable = true;
           lsp.servers = ["nixd"];
+        };
+        lua = {
+          enable = true;
+          lsp.lazydev.enable = true;
         };
         nu.enable = true;
         go.enable = true;

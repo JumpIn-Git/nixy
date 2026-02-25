@@ -21,7 +21,18 @@
 
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.powersave = false;
+  # boot.kernelParams = [ "pcie_aspm=off" ];
 
+
+  # boot.extraModprobeConfig = ''
+  #   options mt7921e disable_aspm=Y
+  #   options mt76 power_save=0
+  # '';
+
+  # services.udev.extraRules = ''
+  #   ACTION=="add", SUBSYSTEM=="pci", ATTR{power/control}="on"
+  # '';
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
 
