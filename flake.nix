@@ -22,10 +22,37 @@
     };
   };
 
-  outputs = {nixpkgs, ...} @ inputs: {
+  outputs = {
+    nixpkgs,
+    nvf,
+    ...
+  } @ inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       modules = [./nixos/config.nix];
       specialArgs = {inherit inputs;};
     };
+    packages.x86_64-linux.default =
+      (nvf.lib.neovimConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = [
+          ./nvf
+          ({lib, ...}: let
+            inherit (lib.nvim.dag) entryBefore;
+          in {
+            vim = {
+              startPlugins = ["base16"];
+              luaConfigRC.theme = entryBefore ["pluginConfigs" "lazyConfigs"] ''
+                local path = vim.fn.expand("~/.cache/noctalia/neovim.lua")
+                require("base16-colorscheme").setup(dofile(path))
+                vim.uv.new_fs_event():start(path, {},
+                  vim.schedule_wrap(function()
+                    require("base16-colorscheme").setup(dofile(path))
+                  end)
+                )
+              '';
+            };
+          })
+        ];
+      }).neovim;
   };
 }

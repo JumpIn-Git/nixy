@@ -1,8 +1,9 @@
-{inputs, ...}: {
-  imports = [inputs.nvf.nixosModules.default];
-  programs.nvf = {
-    enable = true;
-    settings.vim = {
+{
+    vim = {
+      # luaConfigRC.theme = entryBefore ["pluginConfigs" "lazyConfigs"] ''
+      #   ${cfg.extraConfig}
+      #   ${supportedThemes.${cfg.name}.setup {inherit (cfg) style transparent base16-colors;}}
+      # '';
       statusline.lualine.enable = true;
       clipboard = {
         enable = true;
@@ -16,7 +17,6 @@
         };
       };
       keymaps = [
-        #{ "<leader>/", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
         {
           key = "<leader>/";
           mode = "n";
@@ -24,8 +24,7 @@
           action = "<cmd>FzfLua live_grep<cr>";
         }
         {
-          key = "<leader><space>"
-          ;
+          key = "<leader><space>";
           mode = "n";
           desc = "Find Files";
           action = "<cmd>FzfLua files<cr>";
@@ -53,7 +52,7 @@
       autocomplete.blink-cmp = {
         enable = true;
         setupOpts = {
-          keymap.preset = "enter";
+          keymap.preset = "super-tab";
           signature.enabled = true;
         };
       };
@@ -62,6 +61,7 @@
         enable = true;
         inlayHints.enable = true;
         formatOnSave = true;
+        otter-nvim.enable = true;
         # lspkind.enable = true;
       };
       languages = {
@@ -86,5 +86,4 @@
         pairs.enable = true;
       };
     };
-  };
 }

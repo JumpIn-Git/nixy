@@ -10,9 +10,10 @@
     enable = true;
     package = pkgs.niri;
   };
-  services={
-  upower.enable = true;
-  dbus.packages = [pkgs.nautilus];};
+  services = {
+    upower.enable = true;
+    dbus.packages = [pkgs.nautilus];
+  };
   users.users.cinnamon = {
     packages = with pkgs; [
       noctalia-shell

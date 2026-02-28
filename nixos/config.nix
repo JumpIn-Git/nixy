@@ -6,7 +6,7 @@
 }: {
   imports = [
     ./system.nix
-    ./nvf.nix
+    # ./nvf.nix
     ./niri.nix
     inputs.n-i-d.nixosModules.default
     # inputs.hjem.nixosModules.default
