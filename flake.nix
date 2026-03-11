@@ -9,8 +9,13 @@
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mnw.url = "github:gerg-l/mnw";
     nvf.url = "github:notashelf/nvf";
     niri.url = "github:sodiboo/niri-flake";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     n-i-d = {
       url = "github:nix-community/nix-index-database";
@@ -25,12 +30,29 @@
   outputs = {
     nixpkgs,
     nvf,
+    mnw,
     ...
   } @ inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       modules = [./nixos/config.nix];
       specialArgs = {inherit inputs;};
     };
+    packages.x86_64-linux.mnw = mnw.lib.wrap nixpkgs.legacyPackages.x86_64-linux ({pkgs, ...}: {
+      plugins.dev.lua = {
+        pure = ./config/nvim;
+        impure = "vim.fn.expand(\"~/nix/config/nvim\")";
+      };
+      plugins.start = with pkgs.vimPlugins; [
+        blink-cmp
+        nvim-lspconfig
+        lazydev-nvim
+        base16-nvim
+        mini-icons
+        mini-files
+        mini-pairs
+        mini-tabline
+      ];
+    });
     packages.x86_64-linux.default =
       (nvf.lib.neovimConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;

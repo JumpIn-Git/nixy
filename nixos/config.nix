@@ -1,12 +1,10 @@
 {
   pkgs,
   inputs,
-  lib,
   ...
 }: {
   imports = [
     ./system.nix
-    # ./nvf.nix
     ./niri.nix
     inputs.n-i-d.nixosModules.default
     # inputs.hjem.nixosModules.default
@@ -18,7 +16,6 @@
     git.enable = true;
     nix-ld.enable = true;
     nix-index-database.comma.enable = true;
-    firefox.enable = true;
     nh = {
       enable = true;
       clean.enable = true;
@@ -35,17 +32,6 @@
     isNormalUser = true;
     extraGroups = ["wheel" "networkmanager"];
     shell = pkgs.nushell;
-    packages = with pkgs; [
-      zed-editor
-      nushell
-      discord
-      # stremio
-
-      ripgrep
-      fd
-      btop
-      inputs.zen-browser.packages.${system}.default
-    ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -60,12 +46,24 @@
 
   services.ratbagd.enable = true;
   environment.systemPackages = with pkgs; [
-    piper
     nixd
     alejandra
+    love
+    gh
+    zed-editor
+
+    piper
     libnotify
     usbutils
-    gh
+
+    btop
+    ripgrep
+    fd
+    nushell
+
+    discord
+    inputs.zen-browser.packages.${system}.default
+    # stremio
   ];
 
   system.stateVersion = "25.11";

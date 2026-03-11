@@ -22,7 +22,11 @@
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;
-  boot.kernelParams = ["pcie_aspm=off"];
+  boot.kernelParams = [
+    "pcie_aspm=off"
+    "pci=pcie_bus_perf"
+    "mt7921e.disable_aspm=Y"
+  ];
 
   boot.extraModprobeConfig = ''
     options mt7921e disable_aspm=Y
