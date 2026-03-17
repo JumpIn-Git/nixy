@@ -1,5 +1,17 @@
-{
+{lib, ...}: let
+  inherit (lib.nvim.dag) entryBefore;
+in {
   vim = {
+    x.z = 2;
+    x.y.a = 5;
+    startPlugins = ["base16"];
+    luaConfigRC.theme = entryBefore ["pluginConfigs" "lazyConfigs"] ''
+      local path = vim.fn.expand("~/.cache/noctalia/neovim.lua")
+      require(path)
+      vim.uv.new_fs_event():start(path, {}, function()
+      	require(path)
+      end)
+    '';
     statusline.lualine.enable = true;
     clipboard = {
       enable = true;

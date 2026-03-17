@@ -9,12 +9,15 @@
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     mnw.url = "github:gerg-l/mnw";
     nvf.url = "github:notashelf/nvf";
+
     niri.url = "github:sodiboo/niri-flake";
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.noctalia-qs.inputs.nixpkgs.follows = "nixpkgs";
     };
 
     n-i-d = {
@@ -27,54 +30,10 @@
     };
   };
 
-  outputs = {
-    nixpkgs,
-    nvf,
-    mnw,
-    ...
-  } @ inputs: {
+  outputs = {nixpkgs, ...} @ inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       modules = [./nixos/config.nix];
       specialArgs = {inherit inputs;};
     };
-    packages.x86_64-linux.mnw = mnw.lib.wrap nixpkgs.legacyPackages.x86_64-linux ({pkgs, ...}: {
-      plugins.dev.lua = {
-        pure = ./config/nvim;
-        impure = "vim.fn.expand(\"~/nix/config/nvim\")";
-      };
-      plugins.start = with pkgs.vimPlugins; [
-        blink-cmp
-        nvim-lspconfig
-        lazydev-nvim
-        base16-nvim
-        mini-icons
-        mini-files
-        mini-pairs
-        mini-tabline
-      ];
-    });
-    packages.x86_64-linux.default =
-      (nvf.lib.neovimConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [
-          ./nvf
-          ({lib, ...}: let
-            inherit (lib.nvim.dag) entryBefore;
-          in {
-            vim = {
-              startPlugins = ["base16"];
-              luaConfigRC.theme = entryBefore ["pluginConfigs" "lazyConfigs"] ''
-                local path = vim.fn.expand("~/.cache/noctalia/neovim.lua")
-                require("base16-colorscheme").setup(dofile(path))
-                vim.uv.new_fs_event():start(path, {},
-                  vim.schedule_wrap(function()
-                    require("base16-colorscheme").setup(dofile(path))
-                  end)
-                )
-              '';
-            };
-          })
-        ];
-      }).neovim;
   };
 }

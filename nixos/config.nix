@@ -22,15 +22,13 @@
     };
     steam = {
       enable = true;
-      extraCompatPackages = with pkgs; [
-        proton-ge-bin
-      ];
+      extraCompatPackages = with pkgs; [proton-ge-bin];
     };
   };
 
   users.users.cinnamon = {
     isNormalUser = true;
-    extraGroups = ["wheel" "networkmanager"];
+    extraGroups = ["wheel" "networkmanager" "input"];
     shell = pkgs.nushell;
   };
 
@@ -46,22 +44,29 @@
 
   services.ratbagd.enable = true;
   environment.systemPackages = with pkgs; [
+    # dev
+    uv
     nixd
     alejandra
+    lua-language-server
     love
     gh
     zed-editor
 
+    # hw
     piper
     libnotify
     usbutils
 
+    # cli
     btop
     ripgrep
     fd
     nushell
 
+    # web
     discord
+    qbittorrent
     inputs.zen-browser.packages.${system}.default
     # stremio
   ];

@@ -6,26 +6,33 @@
   imports = [
     inputs.niri.nixosModules.niri
   ];
+
   programs.niri = {
     enable = true;
     package = pkgs.niri;
   };
 
   systemd.user.services.niri-flake-polkit.enable = false;
-  users.groups.battery = {};
-  users.users.cinnamon.extraGroups = ["battery"];
-  systemd.tmpfiles.rules = [
-    ''
-      z /sys/class/power_supply/BAT0/charge_control_end_threshold 0664 root battery -
-    ''
-  ];
+  security.soteria.enable = true;
   services = {
     upower.enable = true;
     dbus.packages = [pkgs.nautilus];
+    gvfs.enable = true;
+    udisks2.enable = true;
   };
+
+  users.groups.battery_ctl = {};
+  users.users.cinnamon.extraGroups = ["battery_ctl"];
+  services.udev.extraRules = ''
+    SUBSYSTEM=="power_supply", KERNEL=="BAT*", \
+      ATTR{charge_control_end_threshold}=="*", \
+      RUN+="${pkgs.coreutils}/bin/chgrp battery_ctl /sys$devpath/charge_control_end_threshold", \
+      RUN+="${pkgs.coreutils}/bin/chmod g+w /sys$devpath/charge_control_end_threshold"
+  '';
 
   programs.regreet.enable = true;
   environment.systemPackages = with pkgs; [
+    # (inputs.noctalia.packages.${system}.default.override {calendarSupport = true;})
     (noctalia-shell.override {calendarSupport = true;})
     wl-clipboard
     ghostty

@@ -1,13 +1,9 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: {
+{inputs, ...}: {
   imports = with inputs; [
     nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen1
     ./hardware.nix
   ];
-  boot.kernelPackages = pkgs.linuxPackages_latest; # Magically fixes wifi
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
 
   services.pipewire = {
     enable = true;
@@ -22,20 +18,7 @@
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;
-  boot.kernelParams = [
-    "pcie_aspm=off"
-    "pci=pcie_bus_perf"
-    "mt7921e.disable_aspm=Y"
-  ];
 
-  boot.extraModprobeConfig = ''
-    options mt7921e disable_aspm=Y
-    options mt76 power_save=0
-  '';
-
-  services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="pci", ATTR{power/control}="on"
-  '';
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
 
