@@ -1,3 +1,6 @@
+environment {
+    NIXOS_OZONE_WL "1"
+}
 input {
     keyboard {
         // Enable numlock on startup, omitting this setting disables it.
@@ -5,7 +8,6 @@ input {
     }
 
     touchpad {
-        // off
         tap
         // dwt
         // dwtp
@@ -18,12 +20,9 @@ input {
         // disabled-on-external-mouse
     }
 
-    // Uncomment this to make the mouse warp to the center of newly focused windows.
-    // warp-mouse-to-focus
-
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-    focus-follows-mouse max-scroll-amount="100%"
+    focus-follows-mouse max-scroll-amount="90%"
 }
 
 spawn-at-startup "noctalia-shell"
@@ -43,15 +42,6 @@ animations {
 }
 
 window-rule {
-    // This regular expression is intentionally made as specific as possible,
-    // since this is the default config, and we want no false positives.
-    // You can get away with just app-id="wezterm" if you want.
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
-}
-
-// Open the Firefox picture-in-picture player as floating by default.
-window-rule {
     // This app-id regular expression will work for both:
     // - host Firefox (app-id is "firefox")
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
@@ -62,5 +52,4 @@ window-rule {
 
 include "visual.kdl"
 include "binds.kdl"
-
 include "./noctalia.kdl"

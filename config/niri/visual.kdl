@@ -1,6 +1,10 @@
 prefer-no-csd
+cursor {
+    xcursor-theme "Bibata-Modern-Classic"
+    xcursor-size 21
+}
 layout {
-    gaps 16
+    gaps 5
 
     center-focused-column "never"
 
@@ -14,9 +18,9 @@ layout {
     // preset-window-heights { }
 
     // You can change the default width of the new windows.
-    //default-column-width { proportion 0.5; }
+    default-column-width { proportion 0.5; }
     // If you leave the brackets empty, the windows themselves will decide their initial width.
-    default-column-width {}
+    //default-column-width {}
 
     focus-ring {
         off
@@ -51,16 +55,16 @@ layout {
         // pixels and match the CSS box-shadow properties.
 
         // Softness controls the shadow blur radius.
-        softness 30
+        // softness 100
 
         // Spread expands the shadow.
-        spread 5
+        // spread 5
 
         // Offset moves the shadow relative to the window.
-        offset x=0 y=5
+        // offset x=0 y=5
 
         // You can also change the shadow color and opacity.
-        color "#0007"
+        // color "#0007"
     }
 }
 window-rule {

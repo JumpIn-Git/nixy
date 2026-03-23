@@ -792,7 +792,7 @@
                 "id": "zenBrowser"
             }
         ],
-        "enableUserTheming": true
+        "enableUserTheming": false
     },
     "ui": {
         "boxBorderEnabled": true,
