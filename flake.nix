@@ -5,13 +5,10 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
-    hjem = {
-      url = "github:feel-co/hjem";
+    wrappers = {
+      url = "github:birdeehub/nix-wrapper-modules";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    mnw.url = "github:gerg-l/mnw";
-    nvf.url = "github:notashelf/nvf";
 
     niri.url = "github:sodiboo/niri-flake";
     noctalia = {

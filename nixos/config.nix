@@ -7,10 +7,7 @@
     ./system.nix
     ./niri.nix
     inputs.n-i-d.nixosModules.default
-    # inputs.hjem.nixosModules.default
   ];
-  # hjem.users.cinnamon.files.foo.source = pkgs.runCommandLocal "foo" {} "ln -s ${lib.escapeShellArg /home/cinnamon/nix/foo} $out";
-  # Works! Also with dirs
 
   programs = {
     git.enable = true;
@@ -47,6 +44,7 @@
     # dev
     uv
     nixd
+    nil #testing
     alejandra
     lua-language-server
     love
@@ -57,6 +55,7 @@
     piper
     libnotify
     usbutils
+    evtest
 
     # cli
     btop
@@ -68,7 +67,7 @@
     discord
     qbittorrent
     inputs.zen-browser.packages.${system}.default
-    # stremio
+    # stremio-linux-shell
   ];
 
   system.stateVersion = "25.11";

@@ -6,14 +6,12 @@
   imports = [
     inputs.niri.nixosModules.niri
   ];
-
   programs.niri = {
     enable = true;
     package = pkgs.niri;
   };
-
   systemd.user.services.niri-flake-polkit.enable = false;
-  security.soteria.enable = true;
+
   services = {
     upower.enable = true;
     dbus.packages = [pkgs.nautilus];
@@ -32,8 +30,12 @@
 
   programs.regreet.enable = true;
   environment.systemPackages = with pkgs; [
-    # (inputs.noctalia.packages.${system}.default.override {calendarSupport = true;})
-    (noctalia-shell.override {calendarSupport = true;})
+    (inputs.wrappers.wrappers.noctalia-shell.wrap {
+      inherit pkgs;
+      package = inputs.noctalia.packages.${system}.default.override {calendarSupport = true;};
+      extraPackages = [sqlite];
+      outOfStoreConfig = "/home/cinnamon/nix/config/noctalia";
+    })
     wl-clipboard
     ghostty
     nautilus
