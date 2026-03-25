@@ -232,10 +232,6 @@
                     "useDistroLogo": false
                 },
                 {
-                    "iconColor": "error",
-                    "id": "SessionMenu"
-                },
-                {
                     "defaultSettings": {
                         "batteryDevice": "/sys/class/power_supply/BAT0",
                         "chargeThreshold": 80
@@ -295,6 +291,10 @@
                         }
                     },
                     "id": "plugin:assistant-panel"
+                },
+                {
+                    "iconColor": "error",
+                    "id": "SessionMenu"
                 }
             ]
         }
@@ -330,6 +330,7 @@
         "monitorForColors": "",
         "predefinedScheme": "Catppuccin",
         "schedulingMode": "off",
+        "syncGsettings": true,
         "useWallpaperColors": false
     },
     "controlCenter": {
@@ -599,14 +600,13 @@
         "bluetoothRssiPollingEnabled": false,
         "disableDiscoverability": false,
         "networkPanelView": "wifi",
-        "wifiDetailsViewMode": "grid",
-        "wifiEnabled": true
+        "wifiDetailsViewMode": "grid"
     },
     "nightLight": {
         "autoSchedule": true,
         "dayTemp": "6500",
-        "enabled": false,
-        "forced": false,
+        "enabled": true,
+        "forced": true,
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "nightTemp": "3639"
@@ -845,6 +845,7 @@
             "pixelate",
             "honeycomb"
         ],
+        "useOriginalImages": false,
         "useSolidColor": false,
         "useWallhaven": true,
         "viewMode": "browse",

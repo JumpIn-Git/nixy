@@ -7,6 +7,7 @@
     ./system.nix
     ./niri.nix
     inputs.n-i-d.nixosModules.default
+    inputs.nix-flatpak.nixosModules.nix-flatpak
   ];
 
   programs = {
@@ -19,7 +20,7 @@
     };
     steam = {
       enable = true;
-      extraCompatPackages = with pkgs; [proton-ge-bin];
+      extraCompatPackages = [pkgs.proton-ge-bin];
     };
   };
 
@@ -44,7 +45,6 @@
     # dev
     uv
     nixd
-    nil #testing
     alejandra
     lua-language-server
     love
@@ -67,8 +67,10 @@
     discord
     qbittorrent
     inputs.zen-browser.packages.${system}.default
-    # stremio-linux-shell
+    proton-pass
   ];
+  services.flatpak.enable = true;
+  services.flatpak.packages = ["com.stremio.Stremio"];
 
   system.stateVersion = "25.11";
 }
