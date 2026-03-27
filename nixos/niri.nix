@@ -34,6 +34,23 @@
     extra-trusted-public-keys = ["noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="];
   };
   environment.systemPackages = with pkgs; [
+    (inputs.self.wrappers.wlr-which-key.wrap {
+      inherit pkgs;
+      settings = {
+        menu = [
+          {
+            key = "s";
+            cmd = "noctalia-shell ipc call settings toggle";
+            desc = "Settings";
+          }
+          {
+            key = "w";
+            cmd = "noctalia-shell ipc call wallpaper toggle";
+            desc = "Set wallpaper";
+          }
+        ];
+      };
+    })
     (inputs.wrappers.wrappers.noctalia-shell.wrap {
       inherit pkgs;
       package = inputs.noctalia.packages.${system}.default;

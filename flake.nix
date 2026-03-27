@@ -1,9 +1,4 @@
 {
-  description = "A very basic flake";
-  nixConfig = {
-    extra-substituters = ["https://noctalia.cachix.org"];
-    extra-trusted-public-keys = ["noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="];
-  };
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
@@ -14,11 +9,7 @@
     };
 
     niri.url = "github:sodiboo/niri-flake";
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      # inputs.nixpkgs.follows = "nixpkgs";
-      # inputs.noctalia-qs.inputs.nixpkgs.follows = "nixpkgs";
-    };
+    noctalia.url = "github:noctalia-dev/noctalia-shell";
 
     n-i-d = {
       url = "github:nix-community/nix-index-database";
@@ -31,10 +22,41 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
 
-  outputs = {nixpkgs, ...} @ inputs: {
+  outputs = {
+    nixpkgs,
+    wrappers,
+    ...
+  } @ inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       modules = [./nixos/config.nix];
       specialArgs = {inherit inputs;};
     };
+    wrappers.wlr-which-key = wrappers.lib.wrapModule (
+      {
+        config,
+        pkgs,
+        lib,
+        ...
+      }: let
+        yamlFormat = config.pkgs.formats.yaml {};
+      in {
+        options = {
+          settings = lib.mkOption {
+            type = yamlFormat.type;
+          };
+        };
+
+        config = {
+          package = pkgs.wlr-which-key;
+
+          addFlag = [(yamlFormat.generate "config.yaml" config.settings)];
+        };
+      }
+    );
+  };
+
+  nixConfig = {
+    extra-substituters = ["https://noctalia.cachix.org"];
+    extra-trusted-public-keys = ["noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="];
   };
 }

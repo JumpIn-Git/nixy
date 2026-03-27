@@ -1,8 +1,0 @@
-{
-  "widget": {
-    "distribution": "Distribution",
-    "kernel": "Kernel",
-    "uptime": "Uptime",
-    "loading": "Loading..."
-  }
-}

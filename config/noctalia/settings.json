@@ -223,15 +223,6 @@
                     "id": "NightLight"
                 },
                 {
-                    "colorizeDistroLogo": false,
-                    "colorizeSystemIcon": "none",
-                    "customIconPath": "",
-                    "enableColorization": false,
-                    "icon": "noctalia",
-                    "id": "ControlCenter",
-                    "useDistroLogo": false
-                },
-                {
                     "defaultSettings": {
                         "batteryDevice": "/sys/class/power_supply/BAT0",
                         "chargeThreshold": 80
@@ -291,10 +282,6 @@
                         }
                     },
                     "id": "plugin:assistant-panel"
-                },
-                {
-                    "iconColor": "error",
-                    "id": "SessionMenu"
                 }
             ]
         }
@@ -328,7 +315,7 @@
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "monitorForColors": "",
-        "predefinedScheme": "Catppuccin",
+        "predefinedScheme": "Gruvbox",
         "schedulingMode": "off",
         "syncGsettings": true,
         "useWallpaperColors": false
@@ -605,8 +592,8 @@
     "nightLight": {
         "autoSchedule": true,
         "dayTemp": "6500",
-        "enabled": true,
-        "forced": true,
+        "enabled": false,
+        "forced": false,
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "nightTemp": "3639"
