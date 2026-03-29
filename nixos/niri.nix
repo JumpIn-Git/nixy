@@ -5,6 +5,7 @@
 }: {
   imports = [
     inputs.niri.nixosModules.niri
+    inputs.wrappers.nixosModules.noctalia-shell
   ];
   programs.niri = {
     enable = true;
@@ -29,11 +30,18 @@
   '';
 
   programs.regreet.enable = true;
-  nix.settings = {
-    extra-substituters = ["https://noctalia.cachix.org"];
-    extra-trusted-public-keys = ["noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="];
+  # nix.settings = {
+  #   extra-substituters = ["https://noctalia.cachix.org"];
+  #   extra-trusted-public-keys = ["noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="];
+  # };
+  wrappers.noctalia-shell = {
+    enable = true;
+    package = inputs.noctalia.packages.${pkgs.system}.default;
+    extraPackages = [pkgs.sqlite];
+    outOfStoreConfig = "/home/cinnamon/nix/config/noctalia";
   };
   environment.systemPackages = with pkgs; [
+    xdg-user-dirs-gtk
     (inputs.self.wrappers.wlr-which-key.wrap {
       inherit pkgs;
       settings = {
@@ -51,14 +59,9 @@
         ];
       };
     })
-    (inputs.wrappers.wrappers.noctalia-shell.wrap {
-      inherit pkgs;
-      package = inputs.noctalia.packages.${system}.default;
-      extraPackages = [sqlite];
-      outOfStoreConfig = "/home/cinnamon/nix/config/noctalia";
-    })
     wl-clipboard
     ghostty
+    loupe
     nautilus
     bibata-cursors
     xwayland-satellite

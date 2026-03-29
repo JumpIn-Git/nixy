@@ -10,8 +10,13 @@
     inputs.nix-flatpak.nixosModules.nix-flatpak
   ];
 
+  environment.etc."distrobox/distrobox.conf".text = ''
+    container_additional_volumes="/nix/store:/nix/store:ro /etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro"
+  '';
   programs = {
     git.enable = true;
+    gnupg.agent.enable = true;
+    gnupg.agent.pinentryPackage = pkgs.pinentry-gnome3;
     nix-ld.enable = true;
     nix-index-database.comma.enable = true;
     nh = {
@@ -41,8 +46,13 @@
   };
 
   services.ratbagd.enable = true;
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
   environment.systemPackages = with pkgs; [
     # dev
+    distrobox
     uv
     nixd
     alejandra
@@ -70,7 +80,10 @@
     proton-pass
   ];
   services.flatpak.enable = true;
-  services.flatpak.packages = ["com.stremio.Stremio"];
+  services.flatpak.packages = [
+    "com.stremio.Stremio"
+    "com.modrinth.ModrinthApp"
+  ];
 
   system.stateVersion = "25.11";
 }

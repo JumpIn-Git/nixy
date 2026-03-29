@@ -1,4 +1,8 @@
 {
+  nixConfig = {
+    extra-substituters = ["https://noctalia.cachix.org"];
+    extra-trusted-public-keys = ["noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="];
+  };
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
@@ -38,7 +42,7 @@
         lib,
         ...
       }: let
-        yamlFormat = config.pkgs.formats.yaml {};
+        yamlFormat = pkgs.formats.yaml {};
       in {
         options = {
           settings = lib.mkOption {
@@ -47,16 +51,11 @@
         };
 
         config = {
-          package = pkgs.wlr-which-key;
+          package = lib.mkDefault pkgs.wlr-which-key;
 
           addFlag = [(yamlFormat.generate "config.yaml" config.settings)];
         };
       }
     );
-  };
-
-  nixConfig = {
-    extra-substituters = ["https://noctalia.cachix.org"];
-    extra-trusted-public-keys = ["noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="];
   };
 }
