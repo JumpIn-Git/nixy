@@ -1,6 +1,7 @@
 {
   nixConfig = {
-    extra-substituters = ["https://noctalia.cachix.org"];
+    extra-substituters = ["https://noctalia.cachix.org" "https://watersucks.cachix.org"];
+    trusted-public-keys = ["watersucks.cachix.org-1:6gadPC5R8iLWQ3EUtfu3GFrVY7X6I4Fwz/ihW25Jbv8="];
     extra-trusted-public-keys = ["noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="];
   };
   inputs = {
@@ -11,6 +12,7 @@
       url = "github:birdeehub/nix-wrapper-modules";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-cli.url = "github:nix-community/nixos-cli";
 
     niri.url = "github:sodiboo/niri-flake";
     noctalia.url = "github:noctalia-dev/noctalia-shell";
@@ -39,7 +41,8 @@
       modules = [./nixos/config.nix];
       specialArgs = {inherit inputs;};
     };
-    packages.x86_64-linux.accela = import ./accela.nix {pkgs = nixpkgs.legacyPackages.x86_64-linux;};
+    packages.x86_64-linux.accela = import ./pkgs/accela.nix {pkgs = nixpkgs.legacyPackages.x86_64-linux;};
+    packages.x86_64-linux.niri-ocr = import ./pkgs/niri-ocr nixpkgs.legacyPackages.x86_64-linux;
     wrappers.wlr-which-key = wrappers.lib.wrapModule (
       {
         config,

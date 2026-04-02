@@ -25,6 +25,6 @@ in
       install -D ${contents}/ACCELA.desktop -t $out/share/applications
       substituteInPlace $out/share/applications/ACCELA.desktop \
           --replace-warn "Exec=run.sh" "Exec=ACCELA"
-      install -D ${contents}/accela.png -t $out/share/icons/hicolor/512x512/apps/
+      install -D ${contents}/accela.png -t $out/share/icons/hicolor/scalable/apps/
     '';
   }

@@ -8,7 +8,17 @@
     ./niri.nix
     inputs.n-i-d.nixosModules.default
     inputs.nix-flatpak.nixosModules.nix-flatpak
+    inputs.nixos-cli.nixosModules.nixos-cli
   ];
+  programs.nixos-cli = {
+    enable = true;
+    settings = {
+      apply.use_nom = true;
+      apply.reexec_as_root = true;
+      differ.command = ["nvf" "diff"];
+      config_location = "/home/cinnamon/nix";
+    };
+  };
 
   environment.etc."distrobox/distrobox.conf".text = ''
     container_additional_volumes="/nix/store:/nix/store:ro /etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro"
@@ -49,6 +59,8 @@
     dockerCompat = true;
   };
   environment.systemPackages = with pkgs; [
+    nvd
+    nix-output-monitor
     # dev
     distrobox
     uv

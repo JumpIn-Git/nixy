@@ -28,8 +28,7 @@
       RUN+="${pkgs.coreutils}/bin/chmod g+w /sys$devpath/charge_control_end_threshold"
   '';
 
-  # programs.regreet.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
+  services.displayManager.ly.enable = true;
   wrappers.noctalia-shell = {
     enable = true;
     package = inputs.noctalia.packages.${pkgs.system}.default;
