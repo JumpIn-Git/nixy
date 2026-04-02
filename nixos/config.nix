@@ -15,8 +15,6 @@
   '';
   programs = {
     git.enable = true;
-    gnupg.agent.enable = true;
-    gnupg.agent.pinentryPackage = pkgs.pinentry-gnome3;
     nix-ld.enable = true;
     nix-index-database.comma.enable = true;
     nh = {
@@ -54,18 +52,22 @@
     # dev
     distrobox
     uv
+
     nixd
     alejandra
+
     lua-language-server
     love
+
     gh
     zed-editor
+    gemini-cli
+    evil-helix
 
     # hw
     piper
     libnotify
     usbutils
-    evtest
 
     # cli
     btop
@@ -75,6 +77,7 @@
 
     # web
     discord
+    loupe
     qbittorrent
     inputs.zen-browser.packages.${system}.default
     proton-pass

@@ -17,7 +17,6 @@
     upower.enable = true;
     dbus.packages = [pkgs.nautilus];
     gvfs.enable = true;
-    udisks2.enable = true;
   };
 
   users.groups.battery_ctl = {};
@@ -29,11 +28,8 @@
       RUN+="${pkgs.coreutils}/bin/chmod g+w /sys$devpath/charge_control_end_threshold"
   '';
 
-  programs.regreet.enable = true;
-  # nix.settings = {
-  #   extra-substituters = ["https://noctalia.cachix.org"];
-  #   extra-trusted-public-keys = ["noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="];
-  # };
+  # programs.regreet.enable = true;
+  services.xserver.displayManager.lightdm.enable = true;
   wrappers.noctalia-shell = {
     enable = true;
     package = inputs.noctalia.packages.${pkgs.system}.default;
@@ -41,11 +37,15 @@
     outOfStoreConfig = "/home/cinnamon/nix/config/noctalia";
   };
   environment.systemPackages = with pkgs; [
-    xdg-user-dirs-gtk
     (inputs.self.wrappers.wlr-which-key.wrap {
       inherit pkgs;
       settings = {
         menu = [
+          {
+            key = "c";
+            cmd = "noctalia-shell ipc call controlCenter toggle";
+            desc = "Control center";
+          }
           {
             key = "s";
             cmd = "noctalia-shell ipc call settings toggle";
@@ -61,7 +61,9 @@
     })
     wl-clipboard
     ghostty
-    loupe
+    tesseract
+    nautilus-open-any-terminal
+    mission-center
     nautilus
     bibata-cursors
     xwayland-satellite

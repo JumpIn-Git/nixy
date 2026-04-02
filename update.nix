@@ -1,21 +1,14 @@
 let
   flake = toString ./. |> builtins.getFlake;
-  new = builtins.getFlake "github:nixos/nixpkgs";
-  pkgs = new.legacyPackages.x86_64-linux;
+  pkgs = (builtins.getFlake "github:nixos/nixpkgs").legacyPackages.x86_64-linux;
 in
   flake.nixosConfigurations.nixos.config.environment.systemPackages
   |> builtins.filter (
-    p: let
-      oldVer = p.version or null;
-      matchingPkg =
-        if builtins.hasAttr p.pname pkgs
-        then pkgs.${p.pname}
-        else null;
-
-      newVer = matchingPkg.version or null;
-    in
-      oldVer
-      != null
-      && newVer != null
-      && (builtins.compareVersions newVer oldVer) == 1
+    p:
+      p ? version
+      && pkgs ? ${p.pname}
+      && pkgs.${p.pname} ? version
+      && builtins.compareVersions pkgs.${p.pname}.version p.version == 1
   )
+  |> map (p: p.pname)
+  |> flake.inputs.nixpkgs.lib.unique

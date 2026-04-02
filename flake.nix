@@ -23,6 +23,10 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    helium = {
+      url = "github:schembriaiden/helium-browser-nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
 
@@ -35,6 +39,7 @@
       modules = [./nixos/config.nix];
       specialArgs = {inherit inputs;};
     };
+    packages.x86_64-linux.accela = import ./accela.nix {pkgs = nixpkgs.legacyPackages.x86_64-linux;};
     wrappers.wlr-which-key = wrappers.lib.wrapModule (
       {
         config,

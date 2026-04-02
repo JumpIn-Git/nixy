@@ -21,7 +21,6 @@
     "zswap.zpool=zsmalloc"
     "zswap.shrinker_enabled=1"
   ];
-  boot.kernelModules = ["zsmalloc"];
 
   services.pipewire = {
     enable = true;
