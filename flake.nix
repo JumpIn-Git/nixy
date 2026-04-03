@@ -1,7 +1,6 @@
 {
   nixConfig = {
-    extra-substituters = ["https://noctalia.cachix.org" "https://watersucks.cachix.org"];
-    trusted-public-keys = ["watersucks.cachix.org-1:6gadPC5R8iLWQ3EUtfu3GFrVY7X6I4Fwz/ihW25Jbv8="];
+    extra-substituters = ["https://noctalia.cachix.org"];
     extra-trusted-public-keys = ["noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="];
   };
   inputs = {
@@ -12,7 +11,6 @@
       url = "github:birdeehub/nix-wrapper-modules";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-cli.url = "github:nix-community/nixos-cli";
 
     niri.url = "github:sodiboo/niri-flake";
     noctalia.url = "github:noctalia-dev/noctalia-shell";

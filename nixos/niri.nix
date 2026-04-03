@@ -7,6 +7,7 @@
     inputs.niri.nixosModules.niri
     inputs.wrappers.nixosModules.noctalia-shell
   ];
+
   programs.niri = {
     enable = true;
     package = pkgs.niri;
@@ -18,6 +19,7 @@
     dbus.packages = [pkgs.nautilus];
     gvfs.enable = true;
   };
+  # programs.nautilus-open-any-terminal.enable = true;
 
   users.groups.battery_ctl = {};
   users.users.cinnamon.extraGroups = ["battery_ctl"];
@@ -29,6 +31,13 @@
   '';
 
   services.displayManager.ly.enable = true;
+  services.displayManager.ly.settings = {
+    animation = "colormix";
+    bigclock = "en";
+    blank_box = false;
+    hide_borders = true;
+    # text in center
+  };
   wrappers.noctalia-shell = {
     enable = true;
     package = inputs.noctalia.packages.${pkgs.system}.default;
@@ -61,7 +70,6 @@
     wl-clipboard
     ghostty
     tesseract
-    nautilus-open-any-terminal
     mission-center
     nautilus
     bibata-cursors
