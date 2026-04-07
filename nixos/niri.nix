@@ -35,7 +35,7 @@
     animation = "colormix";
     bigclock = "en";
     blank_box = false;
-    hide_borders = true;
+    # hide_borders = true;
     # text in center
   };
   wrappers.noctalia-shell = {

@@ -35,6 +35,10 @@
 
   nixpkgs.config.allowUnfree = true;
   nix = {
+    registry.nixpkgs-unfree.to = {
+      type = "path";
+      path = inputs.nixpkgs-unfree;
+    };
     channel.enable = false;
     settings = {
       auto-optimise-store = true;
@@ -49,6 +53,7 @@
     dockerCompat = true;
   };
   environment.systemPackages = with pkgs; [
+    adwaita-icon-theme
     # dev
     distrobox
     uv
@@ -73,13 +78,20 @@
     btop
     ripgrep
     fd
-    nushell
+    (inputs.wrappers.wrappers.nushell.wrap {
+      inherit pkgs;
+      "config.nu".content = ''
+        $env.FLAKE = '/home/cinnamon/nix'
+        $env.NH_FLAKE = $env.FLAKE
+      '';
+    })
 
     # web
     discord
     loupe
     qbittorrent
     inputs.zen-browser.packages.${system}.default
+    inputs.helium.packages.${system}.default
     proton-pass
   ];
   services.flatpak.enable = true;

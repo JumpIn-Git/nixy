@@ -5,6 +5,10 @@
   };
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs-unfree = {
+      url = "github:numtide/nixpkgs-unfree";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
     wrappers = {
