@@ -20,6 +20,7 @@
     gvfs.enable = true;
   };
   # programs.nautilus-open-any-terminal.enable = true;
+  programs.nautilus-open-any-terminal.terminal = "ghostty";
 
   users.groups.battery_ctl = {};
   users.users.cinnamon.extraGroups = ["battery_ctl"];
@@ -34,7 +35,7 @@
   services.displayManager.ly.settings = {
     animation = "colormix";
     bigclock = "en";
-    blank_box = false;
+    # blank_box = false;
     # hide_borders = true;
     # text in center
   };
@@ -45,6 +46,7 @@
     outOfStoreConfig = "/home/cinnamon/nix/config/noctalia";
   };
   environment.systemPackages = with pkgs; [
+    inputs.self.packages.${system}.niri-ocr
     (inputs.self.wrappers.wlr-which-key.wrap {
       inherit pkgs;
       settings = {
@@ -64,6 +66,16 @@
             cmd = "noctalia-shell ipc call wallpaper toggle";
             desc = "Set wallpaper";
           }
+          {
+            key = "t";
+            cmd = "niri-ocr";
+            desc = "Screenshot OCR";
+          }
+          {
+            key = "b";
+            cmd = "noctalia-shell ipc call plugin:battery-threshold togglePanel";
+            desc = "Battery threshold";
+          }
         ];
       };
     })
@@ -71,6 +83,7 @@
     ghostty
     tesseract
     mission-center
+    adwaita-icon-theme
     nautilus
     bibata-cursors
     xwayland-satellite

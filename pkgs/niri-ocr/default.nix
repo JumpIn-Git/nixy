@@ -1,9 +1,9 @@
 {
   writers,
+  lib,
   cliphist,
   tesseract,
   wl-clipboard,
-  lib,
   ...
 }:
 writers.writeNuBin "niri-ocr" {

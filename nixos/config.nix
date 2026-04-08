@@ -14,6 +14,7 @@
     container_additional_volumes="/nix/store:/nix/store:ro /etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro"
   '';
   programs = {
+    localsend.enable = true;
     git.enable = true;
     nix-ld.enable = true;
     nix-index-database.comma.enable = true;
@@ -35,10 +36,7 @@
 
   nixpkgs.config.allowUnfree = true;
   nix = {
-    registry.nixpkgs-unfree.to = {
-      type = "path";
-      path = inputs.nixpkgs-unfree;
-    };
+    registry.nixpkgs-unfree.flake = inputs.nixpkgs-unfree;
     channel.enable = false;
     settings = {
       auto-optimise-store = true;
@@ -53,7 +51,6 @@
     dockerCompat = true;
   };
   environment.systemPackages = with pkgs; [
-    adwaita-icon-theme
     # dev
     distrobox
     uv
@@ -90,7 +87,6 @@
     discord
     loupe
     qbittorrent
-    inputs.zen-browser.packages.${system}.default
     inputs.helium.packages.${system}.default
     proton-pass
   ];
