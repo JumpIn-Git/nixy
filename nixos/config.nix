@@ -11,7 +11,7 @@
   ];
 
   environment.etc."distrobox/distrobox.conf".text = ''
-    container_additional_volumes="/nix/store:/nix/store:ro /etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro"
+    container_additional_volumes="/nix/store:/nix/store:ro /run/current-system:/run/current-system:ro /run/wrappers:/run/wrappers:ro"
   '';
   programs = {
     localsend.enable = true;

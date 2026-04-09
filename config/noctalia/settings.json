@@ -586,7 +586,7 @@
         "firstDayOfWeek": -1,
         "hideWeatherCityName": false,
         "hideWeatherTimezone": false,
-        "name": "Nijmegen",
+        "name": "Volendam",
         "showCalendarEvents": true,
         "showCalendarWeather": true,
         "showWeekNumberInCalendar": true,
@@ -781,10 +781,6 @@
             },
             {
                 "enabled": true,
-                "id": "btop"
-            },
-            {
-                "enabled": true,
                 "id": "zed"
             },
             {
@@ -798,6 +794,10 @@
             {
                 "enabled": true,
                 "id": "gtk"
+            },
+            {
+                "enabled": true,
+                "id": "btop"
             }
         ],
         "enableUserTheming": false
