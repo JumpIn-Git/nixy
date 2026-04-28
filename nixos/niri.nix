@@ -8,9 +8,10 @@
     inputs.wrappers.nixosModules.noctalia-shell
   ];
 
+  nixpkgs.overlays = [inputs.niri.overlays.niri];
   programs.niri = {
     enable = true;
-    package = pkgs.niri;
+    package = pkgs.niri-unstable;
   };
   systemd.user.services.niri-flake-polkit.enable = false;
 
@@ -19,8 +20,8 @@
     dbus.packages = [pkgs.nautilus];
     gvfs.enable = true;
   };
-  # programs.nautilus-open-any-terminal.enable = true;
-  programs.nautilus-open-any-terminal.terminal = "ghostty";
+  programs.nautilus-open-any-terminal.enable = true;
+  # programs.nautilus-open-any-terminal.terminal = "ghostty";
 
   users.groups.battery_ctl = {};
   users.users.cinnamon.extraGroups = ["battery_ctl"];
@@ -33,11 +34,10 @@
 
   services.displayManager.ly.enable = true;
   services.displayManager.ly.settings = {
-    animation = "colormix";
+    animation = "gameoflife";
     bigclock = "en";
-    # blank_box = false;
-    # hide_borders = true;
-    # text in center
+    hide_borders = true;
+    text_in_center = true;
   };
   wrappers.noctalia-shell = {
     enable = true;

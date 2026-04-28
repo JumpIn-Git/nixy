@@ -261,9 +261,6 @@
                     "id": "NightLight"
                 },
                 {
-                    "id": "plugin:mimeapp-gui"
-                },
-                {
                     "defaultSettings": {
                         "precision": 8,
                         "showBarValue": true
@@ -306,6 +303,13 @@
                         "showCloseButton": true
                     },
                     "id": "plugin:clipper"
+                },
+                {
+                    "defaultSettings": {
+                        "monitorOrder": [
+                        ]
+                    },
+                    "id": "plugin:mangowc-layout-switcher"
                 }
             ]
         }
@@ -339,7 +343,7 @@
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "monitorForColors": "",
-        "predefinedScheme": "Gruvbox",
+        "predefinedScheme": "Ayu",
         "schedulingMode": "off",
         "syncGsettings": true,
         "useWallpaperColors": false
@@ -582,11 +586,11 @@
     },
     "location": {
         "analogClockInCalendar": false,
-        "autoLocate": true,
+        "autoLocate": false,
         "firstDayOfWeek": -1,
         "hideWeatherCityName": false,
         "hideWeatherTimezone": false,
-        "name": "Volendam",
+        "name": "Purmerend",
         "showCalendarEvents": true,
         "showCalendarWeather": true,
         "showWeekNumberInCalendar": true,
@@ -609,11 +613,11 @@
     "nightLight": {
         "autoSchedule": true,
         "dayTemp": "6500",
-        "enabled": false,
+        "enabled": true,
         "forced": false,
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
-        "nightTemp": "1000"
+        "nightTemp": "3702"
     },
     "noctaliaPerformance": {
         "disableDesktopWidgets": true,
@@ -781,14 +785,6 @@
             },
             {
                 "enabled": true,
-                "id": "zed"
-            },
-            {
-                "enabled": true,
-                "id": "helix"
-            },
-            {
-                "enabled": true,
                 "id": "zenBrowser"
             },
             {
@@ -798,6 +794,14 @@
             {
                 "enabled": true,
                 "id": "btop"
+            },
+            {
+                "enabled": true,
+                "id": "kitty"
+            },
+            {
+                "enabled": true,
+                "id": "zed"
             }
         ],
         "enableUserTheming": false

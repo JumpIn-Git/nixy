@@ -36,7 +36,7 @@
 
   nixpkgs.config.allowUnfree = true;
   nix = {
-    registry.nixpkgs-unfree.flake = inputs.nixpkgs-unfree;
+    registry.n.flake = inputs.nixpkgs-unfree;
     channel.enable = false;
     settings = {
       auto-optimise-store = true;
@@ -61,10 +61,10 @@
     love
 
     gh
-    zed-editor
     lazygit
     gemini-cli
-    evil-helix
+
+    zed-editor
 
     # hw
     piper
@@ -73,13 +73,27 @@
 
     # cli
     btop
+    dua
     ripgrep
     fd
     (inputs.wrappers.wrappers.nushell.wrap {
       inherit pkgs;
+      extraPackages = with pkgs; [microfetch carapace];
+      #nu
       "config.nu".content = ''
         $env.FLAKE = '/home/cinnamon/nix'
         $env.NH_FLAKE = $env.FLAKE
+
+        $env.config.show_banner = false
+        if (is-terminal --stdout) {
+          microfetch
+        }
+        $env.config.completions.external: {
+          enable: true
+          completer: {|spans|
+              carapace $spans.0 nushell ...$spans | from json
+          }
+        }
       '';
     })
 
