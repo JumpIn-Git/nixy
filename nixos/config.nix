@@ -88,11 +88,15 @@
         if (is-terminal --stdout) {
           microfetch
         }
-        $env.config.completions.external: {
-          enable: true
-          completer: {|spans|
-              carapace $spans.0 nushell ...$spans | from json
-          }
+        $env.config = {
+            completions: {
+                external: {
+                    enable: true
+                    completer: {|spans|
+                        carapace $spans.0 nushell ...$spans | from json
+                    }
+                }
+            }
         }
       '';
     })
