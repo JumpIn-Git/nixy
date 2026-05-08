@@ -306,10 +306,27 @@
                 },
                 {
                     "defaultSettings": {
-                        "monitorOrder": [
-                        ]
+                        "audioCodec": "opus",
+                        "audioSource": "default_output",
+                        "colorRange": "limited",
+                        "copyToClipboard": false,
+                        "customReplayDuration": "30",
+                        "directory": "",
+                        "filenamePattern": "recording_yyyyMMdd_HHmmss",
+                        "frameRate": "60",
+                        "hideInactive": false,
+                        "iconColor": "none",
+                        "quality": "very_high",
+                        "replayDuration": "30",
+                        "replayEnabled": false,
+                        "replayStorage": "ram",
+                        "resolution": "original",
+                        "restorePortalSession": false,
+                        "showCursor": true,
+                        "videoCodec": "h264",
+                        "videoSource": "portal"
                     },
-                    "id": "plugin:mangowc-layout-switcher"
+                    "id": "plugin:screen-recorder"
                 }
             ]
         }
@@ -393,7 +410,7 @@
                     "generalTooltipText": "Restart noctalia",
                     "icon": "reload",
                     "id": "CustomButton",
-                    "onClicked": "pkill -9 .quickshell-wra && sh -c noctalia-shell",
+                    "onClicked": "nkidk",
                     "onMiddleClicked": "",
                     "onRightClicked": "",
                     "showExecTooltip": true,
@@ -613,11 +630,11 @@
     "nightLight": {
         "autoSchedule": true,
         "dayTemp": "6500",
-        "enabled": true,
+        "enabled": false,
         "forced": false,
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
-        "nightTemp": "3702"
+        "nightTemp": "1000"
     },
     "noctaliaPerformance": {
         "disableDesktopWidgets": true,

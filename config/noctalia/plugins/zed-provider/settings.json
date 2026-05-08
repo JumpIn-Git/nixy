@@ -1,5 +1,7 @@
 {
   "openCounts": {
-    "/home/cinnamon/nix": 3
+    "/home/cinnamon/nix": 6,
+    "/home/cinnamon/nixv2": 1,
+    "/home/cinnamon/.config/niri": 1
   }
 }

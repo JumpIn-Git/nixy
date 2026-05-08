@@ -4,7 +4,13 @@
     extra-trusted-public-keys = ["noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="];
   };
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
+    rewrite.url = "path:./rewrite";
+    rewrite.inputs.nixpkgs.follows = "nixpkgs";
+    rewrite.inputs.wrappers.follows = "wrappers";
+    rewrite.inputs.niri.follows = "niri";
+    rewrite.inputs.noctalia.follows = "noctalia";
+    rewrite.inputs.parts.follows = "parts";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs-unfree = {
       url = "github:numtide/nixpkgs-unfree";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,7 +49,6 @@
       modules = [./nixos/config.nix];
       specialArgs = {inherit inputs;};
     };
-    packages.x86_64-linux.accela = import ./pkgs/accela.nix {pkgs = nixpkgs.legacyPackages.x86_64-linux;};
     packages.x86_64-linux.niri-ocr = import ./pkgs/niri-ocr nixpkgs.legacyPackages.x86_64-linux;
     wrappers.wlr-which-key = wrappers.lib.wrapModule (
       {

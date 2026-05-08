@@ -1,17 +1,21 @@
 {
   inputs,
   pkgs,
+  lib,
   ...
 }: {
   imports = [
     inputs.niri.nixosModules.niri
     inputs.wrappers.nixosModules.noctalia-shell
   ];
-
+  environment.shells = [
+    "/run/current-system/sw/bin/nu"
+    (lib.getExe pkgs.nushell)
+  ];
   nixpkgs.overlays = [inputs.niri.overlays.niri];
   programs.niri = {
     enable = true;
-    package = pkgs.niri-unstable;
+    package = inputs.rewrite.packages.${pkgs.system}.niri // {cargoBuildNoDefaultFeatures = false;};
   };
   systemd.user.services.niri-flake-polkit.enable = false;
 
@@ -45,8 +49,12 @@
     extraPackages = [pkgs.sqlite];
     outOfStoreConfig = "/home/cinnamon/nix/config/noctalia";
   };
+  environment.etc."xdg/quickshell".source = inputs.noctalia.packages.${pkgs.system}.default + /share/noctalia-shell;
+  environment.variables.QS_CONFIG_PATH = "/etc/xdg/quickshell";
   environment.systemPackages = with pkgs; [
     inputs.self.packages.${system}.niri-ocr
+    wl-gammarelay-rs
+    wl-gammarelay-applet
     (inputs.self.wrappers.wlr-which-key.wrap {
       inherit pkgs;
       settings = {

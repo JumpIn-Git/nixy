@@ -51,6 +51,7 @@
     dockerCompat = true;
   };
   environment.systemPackages = with pkgs; [
+    gpu-screen-recorder
     # dev
     distrobox
     uv
@@ -103,6 +104,7 @@
 
     # web
     discord
+    parabolic
     loupe
     qbittorrent
     inputs.helium.packages.${system}.default
