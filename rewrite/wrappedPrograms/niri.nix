@@ -1,4 +1,4 @@
-{
+{self, ...}: {
   flake.wrappers.niri = {
     lib,
     wlib,
@@ -13,8 +13,7 @@
     };
     config.package = pkgs.niri-unstable;
     config.settings = let
-      # noctaliaExe = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia;
-      noctaliaExe = "noctalia-shell";
+      noctaliaExe = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia;
       null = _: {};
       f = props: content: _: {inherit props content;};
     in {

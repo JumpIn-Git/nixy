@@ -6,7 +6,6 @@
 }: {
   imports = [
     inputs.wrappers.flakeModules.wrappers
-    inputs.parts.flakeModules.modules
   ];
 
   flake.overlays.default = lib.composeManyExtensions [

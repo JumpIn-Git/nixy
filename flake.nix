@@ -6,10 +6,13 @@
   inputs = {
     rewrite.url = "path:./rewrite";
     rewrite.inputs.nixpkgs.follows = "nixpkgs";
+    rewrite.inputs.helium.follows = "helium";
     rewrite.inputs.wrappers.follows = "wrappers";
     rewrite.inputs.niri.follows = "niri";
     rewrite.inputs.noctalia.follows = "noctalia";
     rewrite.inputs.parts.follows = "parts";
+    rewrite.inputs.n-i-d.follows = "n-i-d";
+    rewrite.inputs.nix-flatpak.follows = "nix-flatpak";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs-unfree = {
       url = "github:numtide/nixpkgs-unfree";
@@ -45,6 +48,7 @@
     wrappers,
     ...
   } @ inputs: {
+    nixosConfigurations.tmp = inputs.rewrite.nixosConfigurations.nixos;
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       modules = [./nixos/config.nix];
       specialArgs = {inherit inputs;};

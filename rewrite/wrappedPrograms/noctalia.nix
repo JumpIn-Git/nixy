@@ -4,7 +4,7 @@
     wlib,
     ...
   }: let
-    path = "~/nix/config/noctalia";
+    path = "/home/cinnamon/nix/config/noctalia";
   in {
     imports = [wlib.modules.default];
     package = pkgs.noctalia-shell;
@@ -14,7 +14,7 @@
       # Nice hack, makes config work on systems without repo cloned and changes are written in my local repo
       ''
         mkdir -p ${path} && \
-        cp -rn ${../noctalia}/. ${path}
+        cp -rn ${../config/noctalia}/. ${path}
         find ${path} ! -perm -u+w -exec chmod u+w {} +
       ''
     ];
