@@ -83,7 +83,6 @@
     ripgrep
     fd
     self'.packages.nu
-
     # web
     obsidian
     discord

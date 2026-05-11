@@ -8,10 +8,11 @@
   }: {
     imports = [wlib.wrapperModules.niri];
     options.terminal = lib.mkOption {
-      type = lib.types.str;
-      default = "ghostty";
+      type = lib.types.package;
+      default = pkgs.ghostty;
     };
     config.package = pkgs.niri-unstable;
+    config.extraPackages = with pkgs; [wl-clipboard];
     config.settings = let
       noctaliaExe = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia;
       null = _: {};
@@ -58,9 +59,9 @@
         {
           "Mod+X" = ipc "sessionMenu toggle";
           "Mod+D" = ipc "launcher toggle";
-          "Mod+S".spawn = "wlr-which-key";
+          "Mod+S".spawn = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.wlr-which-key;
           "Mod+E".spawn = "nautilus";
-          "Mod+T".spawn = config.terminal;
+          "Mod+T".spawn = lib.getExe config.terminal;
           XF86AudioRaiseVolume = f {allow-when-locked = true;} <| ipc "volume increase";
           XF86AudioLowerVolume = f {allow-when-locked = true;} <| ipc "volume decrease";
           XF86AudioMute = f {allow-when-locked = true;} <| ipc "volume muteOutput";

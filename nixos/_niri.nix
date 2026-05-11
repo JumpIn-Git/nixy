@@ -18,7 +18,7 @@
     gvfs.enable = true;
   };
   programs.nautilus-open-any-terminal.enable = true;
-  # programs.nautilus-open-any-terminal.terminal = "ghostty";
+  programs.nautilus-open-any-terminal.terminal = "ghostty";
 
   users.groups.battery_ctl = {};
   users.users.cinnamon.extraGroups = ["battery_ctl"];
@@ -38,51 +38,16 @@
       text_in_center = true;
     };
   };
-  environment.etc."xdg/quickshell".source = inputs.noctalia.packages.${pkgs.system}.default + /share/noctalia-shell;
+  environment.etc."xdg/quickshell".source = self'.packages.noctalia + /share/noctalia-shell;
   environment.variables.QS_CONFIG_PATH = "/etc/xdg/quickshell";
   environment.systemPackages = with pkgs; [
     gpu-screen-recorder
     self'.packages.niri-ocr
     wl-gammarelay-rs
     wl-gammarelay-applet
-    (inputs.self.wrappers.wlr-which-key.wrap {
-      inherit pkgs;
-      settings = {
-        menu = [
-          {
-            key = "c";
-            cmd = "noctalia-shell ipc call controlCenter toggle";
-            desc = "Control center";
-          }
-          {
-            key = "s";
-            cmd = "noctalia-shell ipc call settings toggle";
-            desc = "Settings";
-          }
-          {
-            key = "w";
-            cmd = "noctalia-shell ipc call wallpaper toggle";
-            desc = "Set wallpaper";
-          }
-          {
-            key = "t";
-            cmd = "niri-ocr";
-            desc = "Screenshot OCR";
-          }
-          {
-            key = "b";
-            cmd = "noctalia-shell ipc call plugin:battery-threshold togglePanel";
-            desc = "Battery threshold";
-          }
-        ];
-      };
-    })
-    wl-clipboard
     ghostty
-    mission-center
     adwaita-icon-theme
     nautilus
     bibata-cursors
-    xwayland-satellite
   ];
 }

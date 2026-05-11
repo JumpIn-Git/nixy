@@ -76,7 +76,7 @@
         "showCapsule": true,
         "showOnWorkspaceSwitch": true,
         "showOutline": false,
-        "useSeparateOpacity": true,
+        "useSeparateOpacity": false,
         "widgetSpacing": 6,
         "widgets": {
             "center": [
@@ -170,41 +170,6 @@
                     "textColor": "none",
                     "useFixedWidth": false,
                     "visualizerType": "linear"
-                },
-                {
-                    "colorizeSystemIcon": "none",
-                    "colorizeSystemText": "none",
-                    "generalTooltipText": "Rebuild NixOS",
-                    "hideMode": "alwaysExpanded",
-                    "icon": "a-b-2",
-                    "iconPosition": "left",
-                    "id": "CustomButton",
-                    "ipcIdentifier": "",
-                    "leftClickExec": "ghostty -e nh os switch || notify-send \"Rebuild failed\"",
-                    "leftClickUpdateText": false,
-                    "maxTextLength": {
-                        "horizontal": 10,
-                        "vertical": 10
-                    },
-                    "middleClickExec": "",
-                    "middleClickUpdateText": false,
-                    "parseJson": false,
-                    "rightClickExec": "ghostty -e nh os switch -u",
-                    "rightClickUpdateText": false,
-                    "showExecTooltip": true,
-                    "showIcon": true,
-                    "showTextTooltip": true,
-                    "textCollapse": "",
-                    "textCommand": "",
-                    "textIntervalMs": 3000,
-                    "textStream": false,
-                    "wheelDownExec": "",
-                    "wheelDownUpdateText": false,
-                    "wheelExec": "",
-                    "wheelMode": "unified",
-                    "wheelUpExec": "",
-                    "wheelUpUpdateText": false,
-                    "wheelUpdateText": false
                 }
             ],
             "right": [
@@ -359,11 +324,11 @@
         "generationMethod": "content",
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
-        "monitorForColors": "",
+        "monitorForColors": "eDP-1",
         "predefinedScheme": "Ayu",
         "schedulingMode": "off",
         "syncGsettings": true,
-        "useWallpaperColors": false
+        "useWallpaperColors": true
     },
     "controlCenter": {
         "cards": [
@@ -877,7 +842,7 @@
         ],
         "useOriginalImages": false,
         "useSolidColor": false,
-        "useWallhaven": true,
+        "useWallhaven": false,
         "viewMode": "single",
         "wallhavenApiKey": "",
         "wallhavenCategories": "111",
