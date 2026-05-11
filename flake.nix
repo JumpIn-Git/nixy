@@ -4,26 +4,23 @@
     extra-trusted-public-keys = ["noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="];
   };
   inputs = {
-    rewrite.url = "path:./rewrite";
-    rewrite.inputs.nixpkgs.follows = "nixpkgs";
-    rewrite.inputs.helium.follows = "helium";
-    rewrite.inputs.wrappers.follows = "wrappers";
-    rewrite.inputs.niri.follows = "niri";
-    rewrite.inputs.noctalia.follows = "noctalia";
-    rewrite.inputs.parts.follows = "parts";
-    rewrite.inputs.n-i-d.follows = "n-i-d";
-    rewrite.inputs.nix-flatpak.follows = "nix-flatpak";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs-unfree = {
       url = "github:numtide/nixpkgs-unfree";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nixos-hardware.url = "github:nixos/nixos-hardware";
+    n-i-d = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
+
     parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-
     wrappers = {
       url = "github:birdeehub/nix-wrapper-modules";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,46 +32,19 @@
       url = "github:schembriaiden/helium-browser-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    n-i-d = {
-      url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
-
   outputs = {
+    parts,
     nixpkgs,
-    wrappers,
     ...
-  } @ inputs: {
-    nixosConfigurations.tmp = inputs.rewrite.nixosConfigurations.nixos;
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      modules = [./nixos/config.nix];
-      specialArgs = {inherit inputs;};
+  } @ inputs:
+    parts.lib.mkFlake {inherit inputs;} {
+      imports = with nixpkgs.lib;
+        fileset.fileFilter (f:
+          f.hasExt "nix"
+          && f.name != "flake.nix"
+          && !hasPrefix "_" f.name)
+        ./.
+        |> fileset.toList;
     };
-    packages.x86_64-linux.niri-ocr = import ./pkgs/niri-ocr nixpkgs.legacyPackages.x86_64-linux;
-    wrappers.wlr-which-key = wrappers.lib.wrapModule (
-      {
-        config,
-        pkgs,
-        lib,
-        ...
-      }: let
-        yamlFormat = pkgs.formats.yaml {};
-      in {
-        options = {
-          settings = lib.mkOption {
-            type = yamlFormat.type;
-          };
-        };
-
-        config = {
-          package = lib.mkDefault pkgs.wlr-which-key;
-
-          addFlag = [(yamlFormat.generate "config.yaml" config.settings)];
-        };
-      }
-    );
-  };
 }
