@@ -55,23 +55,21 @@
     # dev
     distrobox
     uv
-
-    nixd
-    alejandra
-    lua-language-server
-    love
-
     gh
     lazygit
     gemini-cli
-
     zed-editor
 
+    nixd
+    alejandra
+
+    lua-language-server
+    lua
+    love
     # hw
     piper
     libnotify
     usbutils
-
     # cli
     btop
     dua
@@ -103,6 +101,7 @@
     })
 
     # web
+    obsidian
     discord
     parabolic
     loupe

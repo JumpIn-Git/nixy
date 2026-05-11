@@ -1,6 +1,9 @@
 {
   pkgs,
   inputs,
+  inputs',
+  self',
+  lib,
   ...
 }: {
   imports = [
@@ -28,12 +31,6 @@
     };
   };
 
-  users.users.cinnamon = {
-    isNormalUser = true;
-    extraGroups = ["wheel" "networkmanager" "input"];
-    shell = pkgs.nushell;
-  };
-
   nixpkgs.config.allowUnfree = true;
   nix = {
     registry.n.flake = inputs.nixpkgs-unfree;
@@ -45,69 +42,55 @@
     };
   };
 
+  users.users.cinnamon = {
+    isNormalUser = true;
+    extraGroups = ["wheel" "networkmanager" "input"];
+    shell = self'.packages.nu;
+  };
+  environment.shells = [
+    "/run/current-system/sw/bin/nu"
+    (lib.getExe self'.packages.nu)
+  ];
+
   services.ratbagd.enable = true;
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
   };
   environment.systemPackages = with pkgs; [
-    gpu-screen-recorder
     # dev
     distrobox
+    gemini-cli
+    zed-editor
+
     uv
+    gh
+    lazygit
 
     nixd
     alejandra
+
     lua-language-server
+    lua
     love
-
-    gh
-    lazygit
-    gemini-cli
-
-    zed-editor
-
     # hw
     piper
     libnotify
     usbutils
-
     # cli
     btop
     dua
     ripgrep
     fd
-    (inputs.wrappers.wrappers.nushell.wrap {
-      inherit pkgs;
-      extraPackages = with pkgs; [microfetch carapace];
-      #nu
-      "config.nu".content = ''
-        $env.FLAKE = '/home/cinnamon/nix'
-        $env.NH_FLAKE = $env.FLAKE
-
-        $env.config.show_banner = false
-        if (is-terminal --stdout) {
-          microfetch
-        }
-        $env.config = {
-            completions: {
-                external: {
-                    enable: true
-                    completer: {|spans|
-                        carapace $spans.0 nushell ...$spans | from json
-                    }
-                }
-            }
-        }
-      '';
-    })
+    self'.packages.nu
 
     # web
+    obsidian
     discord
     parabolic
     loupe
     qbittorrent
-    inputs.helium.packages.${system}.default
+    inputs'.helium.packages.default
     proton-pass
   ];
   services.flatpak.enable = true;

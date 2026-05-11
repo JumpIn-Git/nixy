@@ -1,21 +1,14 @@
 {
   inputs,
+  self',
   pkgs,
-  lib,
   ...
 }: {
-  imports = [
-    inputs.niri.nixosModules.niri
-    inputs.wrappers.nixosModules.noctalia-shell
-  ];
-  environment.shells = [
-    "/run/current-system/sw/bin/nu"
-    (lib.getExe pkgs.nushell)
-  ];
+  imports = [inputs.niri.nixosModules.niri];
   nixpkgs.overlays = [inputs.niri.overlays.niri];
   programs.niri = {
     enable = true;
-    package = inputs.self.packages.${pkgs.system}.niri // {cargoBuildNoDefaultFeatures = false;};
+    package = self'.packages.niri // {cargoBuildNoDefaultFeatures = false;};
   };
   systemd.user.services.niri-flake-polkit.enable = false;
 
@@ -36,23 +29,20 @@
       RUN+="${pkgs.coreutils}/bin/chmod g+w /sys$devpath/charge_control_end_threshold"
   '';
 
-  services.displayManager.ly.enable = true;
-  services.displayManager.ly.settings = {
-    animation = "gameoflife";
-    bigclock = "en";
-    hide_borders = true;
-    text_in_center = true;
-  };
-  wrappers.noctalia-shell = {
+  services.displayManager.ly = {
     enable = true;
-    package = inputs.noctalia.packages.${pkgs.system}.default;
-    extraPackages = [pkgs.sqlite];
-    outOfStoreConfig = "/home/cinnamon/nix/config/noctalia";
+    settings = {
+      animation = "gameoflife";
+      bigclock = "en";
+      hide_borders = true;
+      text_in_center = true;
+    };
   };
   environment.etc."xdg/quickshell".source = inputs.noctalia.packages.${pkgs.system}.default + /share/noctalia-shell;
   environment.variables.QS_CONFIG_PATH = "/etc/xdg/quickshell";
   environment.systemPackages = with pkgs; [
-    inputs.self.packages.${system}.niri-ocr
+    gpu-screen-recorder
+    self'.packages.niri-ocr
     wl-gammarelay-rs
     wl-gammarelay-applet
     (inputs.self.wrappers.wlr-which-key.wrap {
@@ -89,7 +79,6 @@
     })
     wl-clipboard
     ghostty
-    tesseract
     mission-center
     adwaita-icon-theme
     nautilus
