@@ -34,7 +34,7 @@
           }
           {
             key = "t";
-            cmd = "niri-ocr";
+            cmd = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.niri-ocr;
             desc = "Screenshot OCR";
           }
           {

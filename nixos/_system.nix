@@ -5,8 +5,18 @@
 }: {
   imports = with inputs; [
     nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen1
+    self.nixosModules.core
     ./_hw.nix
   ];
+
+  users.groups.battery_ctl = {};
+  users.users.cinnamon.extraGroups = ["battery_ctl"];
+  services.udev.extraRules = ''
+    SUBSYSTEM=="power_supply", KERNEL=="BAT*", \
+      ATTR{charge_control_end_threshold}=="*", \
+      RUN+="${pkgs.coreutils}/bin/chgrp battery_ctl /sys$devpath/charge_control_end_threshold", \
+      RUN+="${pkgs.coreutils}/bin/chmod g+w /sys$devpath/charge_control_end_threshold"
+  '';
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -31,25 +41,4 @@
     pulse.enable = true;
   };
   hardware.bluetooth.enable = true;
-
-  networking.hostName = "nixos"; # Define your hostname.
-  networking.networkmanager.enable = true;
-  networking.networkmanager.wifi.powersave = false;
-
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.enable = true;
-
-  time.timeZone = "Europe/Amsterdam";
-  i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "nl_NL.UTF-8";
-    LC_IDENTIFICATION = "nl_NL.UTF-8";
-    LC_MEASUREMENT = "nl_NL.UTF-8";
-    LC_MONETARY = "nl_NL.UTF-8";
-    LC_NAME = "nl_NL.UTF-8";
-    LC_NUMERIC = "nl_NL.UTF-8";
-    LC_PAPER = "nl_NL.UTF-8";
-    LC_TELEPHONE = "nl_NL.UTF-8";
-    LC_TIME = "nl_NL.UTF-8";
-  };
 }

@@ -19,7 +19,8 @@
         "overviewLayer": false,
         "pinnedApps": [
             "dev.zed.Zed",
-            "helium"
+            "helium",
+            "com.stremio.Stremio"
         ],
         "position": "bottom_left",
         "screenshotAnnotationTool": "",
@@ -325,10 +326,10 @@
         "manualSunrise": "06:30",
         "manualSunset": "18:30",
         "monitorForColors": "eDP-1",
-        "predefinedScheme": "Ayu",
+        "predefinedScheme": "Catppuccin Lavender",
         "schedulingMode": "off",
         "syncGsettings": true,
-        "useWallpaperColors": true
+        "useWallpaperColors": false
     },
     "controlCenter": {
         "cards": [

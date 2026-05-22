@@ -18,6 +18,7 @@
       null = _: {};
       f = props: content: _: {inherit props content;};
     in {
+      xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
       debug.honor-xdg-activation-with-invalid-serial = null;
       output = f ["eDP-1"] {scale = 1.1;};
       input = {
