@@ -6,7 +6,7 @@
   "frameRate": "60",
   "audioCodec": "opus",
   "videoCodec": "h264",
-  "quality": "medium",
+  "quality": "very_high",
   "colorRange": "limited",
   "showCursor": true,
   "copyToClipboard": true,

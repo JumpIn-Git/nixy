@@ -3,11 +3,13 @@
   pkgs,
   ...
 }: {
-  imports = with inputs; [
-    nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen1
-    self.nixosModules.core
+  imports = [
+    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen1
     ./_hw.nix
   ];
+
+  system.stateVersion = "25.11";
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
 
   users.groups.battery_ctl = {};
   users.users.cinnamon.extraGroups = ["battery_ctl"];
@@ -17,8 +19,6 @@
       RUN+="${pkgs.coreutils}/bin/chgrp battery_ctl /sys$devpath/charge_control_end_threshold", \
       RUN+="${pkgs.coreutils}/bin/chmod g+w /sys$devpath/charge_control_end_threshold"
   '';
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   swapDevices = [
     {

@@ -9,9 +9,7 @@
     ...
   }:
     inputs.nixpkgs.lib.nixosSystem {
-      modules = [
-        ./_config.nix
-      ];
+      modules = [./_system.nix] ++ builtins.attrValues inputs.self.nixosModules;
       specialArgs = {inherit inputs inputs' self';};
     });
 }

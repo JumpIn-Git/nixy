@@ -1,5 +1,10 @@
 {
-  flake.nixosModules.core = {inputs, ...}: {
+  flake.nixosModules.core = {
+    inputs,
+    pkgs,
+    ...
+  }: {
+    imports = [inputs.n-i-d.nixosModules.default];
     nixpkgs.config.allowUnfree = true;
     nix = {
       registry.n.flake = inputs.nixpkgs-unfree;
@@ -10,6 +15,22 @@
         trusted-users = ["@wheel"];
       };
     };
+    programs.git.enable = true;
+    programs = {
+      nix-ld.enable = true;
+      nix-index-database.comma.enable = true;
+      nh = {
+        enable = true;
+        clean.enable = true;
+      };
+    };
+
+    environment.systemPackages = with pkgs; [
+      btop
+      dua
+      ripgrep
+      fd
+    ];
 
     networking.hostName = "nixos"; # Define your hostname.
     networking.networkmanager.enable = true;

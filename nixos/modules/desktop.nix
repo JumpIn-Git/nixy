@@ -2,14 +2,16 @@
   flake.nixosModules.desktop = {
     pkgs,
     inputs',
+    self',
     ...
   }: {
     environment.systemPackages = with pkgs; [
-      mpv
+      self'.packages.mpv
       wl-gammarelay-rs
       wl-gammarelay-applet
 
       obsidian
+      pandoc
       discord
       parabolic
       loupe

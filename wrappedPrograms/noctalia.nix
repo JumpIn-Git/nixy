@@ -8,7 +8,7 @@
   in {
     imports = [wlib.modules.default];
     package = pkgs.noctalia-shell;
-    extraPackages = with pkgs; [mission-center gpu-screen-recorder sqlite];
+    runtimePkgs = with pkgs; [mission-center gpu-screen-recorder sqlite];
     env.NOCTALIA_CONFIG_DIR = path;
     runShell = [
       # Nice hack, makes config work on systems without repo cloned and changes are written in my local repo

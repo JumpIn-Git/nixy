@@ -12,7 +12,7 @@
       default = pkgs.ghostty;
     };
     config.package = pkgs.niri-unstable;
-    config.extraPackages = with pkgs; [wl-clipboard];
+    config.runtimePkgs = with pkgs; [wl-clipboard];
     config.settings = let
       noctaliaExe = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia;
       null = _: {};

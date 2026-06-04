@@ -20,7 +20,8 @@
         "pinnedApps": [
             "dev.zed.Zed",
             "helium",
-            "com.stremio.Stremio"
+            "com.stremio.Stremio",
+            "obsidian"
         ],
         "position": "bottom_left",
         "screenshotAnnotationTool": "",
