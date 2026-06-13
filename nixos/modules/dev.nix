@@ -4,7 +4,6 @@
       uv
       gh
       lazygit
-      gemini-cli
       antigravity-cli
       zed-editor
 
