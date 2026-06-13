@@ -10,7 +10,6 @@
       blink-cmp
       mini-files
       mini-icons
-      mini
     ];
   };
 }
