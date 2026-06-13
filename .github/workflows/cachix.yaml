@@ -20,7 +20,7 @@ jobs:
       - name: build all
         shell: nu {0}
         run: |
-          nix flake show --json --extra-experimental-features pipe-operators | from json | get packages.x86_64-linux -o | columns | each {|p| nix build --extra-experimental-features pipe-operators $".#($p)"}
+          nix flake show --json --extra-experimental-features pipe-operators --accept-flake-config | from json | get packages.x86_64-linux -o | columns | each {|p| nix build --extra-experimental-features pipe-operators --accept-flake-config $".#($p)"}
       - name: build nixos
         shell: nu {0}
         run: |
