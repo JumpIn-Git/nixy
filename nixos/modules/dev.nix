@@ -1,13 +1,11 @@
 {
-  flake.nixosModules.dev = {
-    pkgs,
-    ...
-  }: {
+  flake.nixosModules.dev = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       uv
       gh
       lazygit
       gemini-cli
+      antigravity-cli
       zed-editor
 
       nixd
