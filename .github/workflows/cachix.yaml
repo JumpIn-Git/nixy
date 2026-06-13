@@ -24,4 +24,4 @@ jobs:
       - name: build nixos
         shell: nu {0}
         run: |
-          nix build .#nixosConfigurations.nixos.config.system.build.toplevel
+          nix build .#nixosConfigurations.nixos.config.system.build.toplevel --extra-experimental-features pipe-operators --accept-flake-config
