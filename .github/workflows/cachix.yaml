@@ -1,0 +1,25 @@
+name: cachix
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  cache:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: cachix/install-nix-action@v31
+      - uses: cachix/cachix-action@v17
+      - uses: hustcer/setup-nu@v3
+        with:
+          name: "jump1n"
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      - name: build all
+        shell: nu {0}
+        run: |
+          nix flake show --json | from json | get packages.x86_64-linux -o | columns | each {|p| nix build $".#($p)"}
+      - name: build nixos
+        shell: nu {0}
+        run: |
+          nix build .#nixosConfigurations.nixos.config.system.build.toplevel
