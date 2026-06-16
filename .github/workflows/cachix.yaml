@@ -1,22 +1,16 @@
 name: cachix
-
 on:
   push:
     branches:
       - main
-    # 1. Prevent the workflow from running entirely if unrelated files (like README.md) change
     paths:
       - "pkgs/**"
       - "wrappedPrograms/**"
-      - "nixos/**"
-
 jobs:
   cache:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      # 2. Combine your file checks into a single step using files_yaml
       - id: changed-files
         uses: tj-actions/changed-files@v45
         with:
@@ -24,32 +18,19 @@ jobs:
             packages:
               - pkgs/**
               - wrappedPrograms/**
-            nixos:
-              - nixos/**
-
       - uses: hustcer/setup-nu@v3
-
-      # 3. Global Nix configuration eliminates the need for repetitive flags later
       - uses: cachix/install-nix-action@v31
         with:
           extra_nix_config: |
             experimental-features = nix-command flakes pipe-operators
             accept-flake-config = true
-
       - uses: cachix/cachix-action@v17
         with:
           name: "jump1n"
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
-      # 4. Clean, flag-free Nushell scripts
       - name: build packages
         if: steps.changed-files.outputs.packages_any_changed == 'true'
         shell: nu {0}
         run: |
           nix flake show --json | from json | get packages.x86_64-linux -o | columns | each {|p| nix build $".#($p)"}
-
-      - name: build nixos
-        if: steps.changed-files.outputs.nixos_any_changed == 'true'
-        shell: nu {0}
-        run: |
-          nix build .#nixosConfigurations.nixos.config.system.build.toplevel

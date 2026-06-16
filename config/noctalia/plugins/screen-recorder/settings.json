@@ -12,7 +12,7 @@
   "copyToClipboard": true,
   "audioSource": "default_output",
   "videoSource": "portal",
-  "resolution": "original",
+  "resolution": "1920x1080",
   "replayEnabled": false,
   "replayDuration": "30",
   "customReplayDuration": "30",

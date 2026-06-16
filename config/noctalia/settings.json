@@ -294,6 +294,15 @@
                         "videoSource": "portal"
                     },
                     "id": "plugin:screen-recorder"
+                },
+                {
+                    "defaultSettings": {
+                        "group": "",
+                        "platform": "github",
+                        "refreshInterval": 60,
+                        "repo": ""
+                    },
+                    "id": "plugin:git-companion"
                 }
             ]
         }
