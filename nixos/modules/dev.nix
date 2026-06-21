@@ -5,7 +5,7 @@
       uv
       gh
       lazygit
-      antigravity-cli
+      opencode
       zed-editor
 
       nixd
