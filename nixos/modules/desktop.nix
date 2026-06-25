@@ -22,6 +22,7 @@
       zed-editor
       self'.packages.mpv
       obsidian
+      self'.zennotes
       pandoc
       parabolic
       loupe
