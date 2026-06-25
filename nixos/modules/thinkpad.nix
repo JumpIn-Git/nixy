@@ -22,6 +22,8 @@
       autoEnrollKeys.autoReboot = true;
     };
 
+    programs.appimage.enable = true;
+    programs.appimage.binfmt = true;
     users.groups.battery_ctl = {};
     users.users.cinnamon.extraGroups = ["battery_ctl"];
     services.udev.extraRules = ''
