@@ -5,7 +5,6 @@ on:
       - main
     paths:
       - "pkgs/**"
-      - "wrappedPrograms/**"
 jobs:
   cache:
     runs-on: ubuntu-latest
@@ -25,4 +24,6 @@ jobs:
       - name: build packages
         shell: nu {0}
         run: |
-          nix flake show --json | from json | get packages.x86_64-linux -o | columns | each {|p| nix build $".#($p)"}
+          for i in (ls pkgs | get name | each {$in | path basename | path parse | get stem}) {
+            nix build $".#($i)"
+          }
