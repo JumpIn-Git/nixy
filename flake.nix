@@ -1,10 +1,11 @@
 {
   nixConfig = {
-    extra-substituters = ["https://noctalia.cachix.org" "https://niri.cachix.org" "https://jump1n.cachix.org"];
+    extra-substituters = ["https://noctalia.cachix.org" "https://niri.cachix.org" "https://jump1n.cachix.org" "https://lanzaboote.cachix.org"];
     extra-trusted-public-keys = [
       "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
       "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
       "jump1n.cachix.org-1:duG5cdEwJOCp/NJJ18hSOk+0NPWEDcjeGA1/fv7WlLA="
+      "lanzaboote.cachix.org-1:Nt9//zGmqkg1k5iu+B3bkj3OmHKjSw9pvf3faffLLNk="
     ];
     extra-experimental-features = ["pipe-operators"];
   };
@@ -21,6 +22,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.1.0";
+    };
 
     parts = {
       url = "github:hercules-ci/flake-parts";

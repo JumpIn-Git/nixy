@@ -6,13 +6,21 @@
   }: {
     imports = [
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen1
-      ./_hw.nix
+      inputs.lanzaboote.nixosModules.lanzaboote
+      ../_hw.nix
     ];
 
     system.stateVersion = "25.11";
     # boot.kernelPackages = pkgs.linuxPackages_latest;
     services.fwupd.enable = true;
-    environment.systemPackages = [pkgs.firmware-updater];
+    environment.systemPackages = [pkgs.firmware-updater pkgs.sbctl];
+    boot.lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+      autoGenerateKeys.enable = true;
+      autoEnrollKeys.enable = true;
+      autoEnrollKeys.autoReboot = true;
+    };
 
     users.groups.battery_ctl = {};
     users.users.cinnamon.extraGroups = ["battery_ctl"];
