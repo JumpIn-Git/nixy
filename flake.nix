@@ -7,7 +7,7 @@
       "jump1n.cachix.org-1:duG5cdEwJOCp/NJJ18hSOk+0NPWEDcjeGA1/fv7WlLA="
       "lanzaboote.cachix.org-1:Nt9//zGmqkg1k5iu+B3bkj3OmHKjSw9pvf3faffLLNk="
     ];
-    extra-experimental-features = ["pipe-operators"];
+    extra-experimental-features = ["nix-command" "flakes" "pipe-operators"];
   };
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -22,9 +22,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote/v1.1.0";
-    };
+    lanzaboote.url = "github:nix-community/lanzaboote/v1.1.0";
 
     parts = {
       url = "github:hercules-ci/flake-parts";

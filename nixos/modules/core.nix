@@ -10,11 +10,13 @@
     nix = {
       registry.n.flake = inputs.nixpkgs-unfree;
       channel.enable = false;
-      settings = {
-        auto-optimise-store = true;
-        experimental-features = ["flakes" "nix-command" "pipe-operators"];
-        trusted-users = ["@wheel"];
-      };
+      settings =
+        {
+          # auto-optimise-store = true;
+          # experimental-features = ["flakes" "nix-command" "pipe-operators"];
+          # trusted-users = ["@wheel"];
+        }
+        // (import ../../flake.nix).nixConfig;
     };
     programs.git.enable = true;
     programs = {

@@ -8,7 +8,7 @@
         hash = "sha256-i604+ITaO6KIcZGqx6ljg2VJofaM0jj+Lzv9cU4S4ws=";
       };
 
-      contents = pkgs.appimageTools.extractType2 {
+      contents = pkgs.appimageTools.extract {
         inherit pname version src;
       };
     in

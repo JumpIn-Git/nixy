@@ -6,7 +6,6 @@
       gh
       lazygit
       opencode
-      zed-editor
 
       nixd
       alejandra

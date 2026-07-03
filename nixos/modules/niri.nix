@@ -23,7 +23,7 @@
     services.displayManager.ly = {
       enable = true;
       settings = {
-        animation = "gameoflife";
+        animation = "colormix";
         bigclock = "en";
         hide_borders = true;
         text_in_center = true;
