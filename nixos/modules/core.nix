@@ -12,9 +12,8 @@
       channel.enable = false;
       settings =
         {
-          # auto-optimise-store = true;
-          # experimental-features = ["flakes" "nix-command" "pipe-operators"];
-          # trusted-users = ["@wheel"];
+          auto-optimise-store = true;
+          trusted-users = ["@wheel"];
         }
         // (import ../../flake.nix).nixConfig;
     };

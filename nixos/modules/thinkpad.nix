@@ -10,6 +10,7 @@
       ../_hw.nix
     ];
 
+    services.tlp.pd.enable = true;
     system.stateVersion = "25.11";
     services.fwupd.enable = true;
     environment.systemPackages = [pkgs.firmware-updater pkgs.sbctl];

@@ -30,6 +30,7 @@
       };
     };
     environment.systemPackages = with pkgs; [
+      self'.packages.noctalia
       adwaita-icon-theme
       nautilus
       bibata-cursors
