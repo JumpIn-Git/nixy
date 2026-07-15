@@ -13,37 +13,7 @@
     config.addFlag = [(yamlFormat.generate "config.yaml" config.settings)];
     options.settings = lib.mkOption {
       type = yamlFormat.type;
-      default = let
-        noctaliaExe = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia;
-      in {
-        menu = [
-          {
-            key = "c";
-            cmd = "${noctaliaExe} ipc call controlCenter toggle";
-            desc = "Control center";
-          }
-          {
-            key = "s";
-            cmd = "${noctaliaExe} ipc call settings toggle";
-            desc = "Settings";
-          }
-          {
-            key = "w";
-            cmd = "${noctaliaExe} ipc call wallpaper toggle";
-            desc = "Set wallpaper";
-          }
-          {
-            key = "t";
-            cmd = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.niri-ocr;
-            desc = "Screenshot OCR";
-          }
-          {
-            key = "b";
-            cmd = "${noctaliaExe} ipc call plugin:battery-threshold togglePanel";
-            desc = "Battery threshold";
-          }
-        ];
-      };
+      default = {};
     };
   };
 }

@@ -1,0 +1,39 @@
+{
+  noctaliaExe,
+  lib,
+  pkgs,
+  self,
+}: {
+  settings.menu = [
+    {
+      key = "g";
+      cmd = lib.getExe pkgs.wl-gammarelay-applet;
+      desc = "Gammarelay applet";
+    }
+    {
+      key = "c";
+      cmd = "${noctaliaExe} ipc call controlCenter toggle";
+      desc = "Control center";
+    }
+    {
+      key = "s";
+      cmd = "${noctaliaExe} ipc call settings toggle";
+      desc = "Settings";
+    }
+    {
+      key = "w";
+      cmd = "${noctaliaExe} ipc call wallpaper toggle";
+      desc = "Set wallpaper";
+    }
+    {
+      key = "t";
+      cmd = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.niri-ocr;
+      desc = "Screenshot OCR";
+    }
+    {
+      key = "b";
+      cmd = "${noctaliaExe} ipc call plugin:battery-threshold togglePanel";
+      desc = "Battery threshold";
+    }
+  ];
+}

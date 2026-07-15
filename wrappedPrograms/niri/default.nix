@@ -11,10 +11,19 @@
       type = lib.types.package;
       default = pkgs.ghostty;
     };
+    options.noctalia = lib.mkOption {
+      type = lib.types.package;
+      default = self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia;
+    };
+
     config.package = pkgs.niri-unstable;
+    config.drv = {
+      inherit (config.package) cargoBuildNoDefaultFeatures cargoBuildFeatures; # niri flake uses this
+    };
     config.runtimePkgs = with pkgs; [wl-clipboard];
+
     config.settings = let
-      noctaliaExe = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia;
+      noctaliaExe = lib.getExe config.noctalia;
       null = _: {};
       f = props: content: _: {inherit props content;};
     in {
@@ -29,7 +38,10 @@
           natural-scroll = null;
         };
       };
-      spawn-at-startup = [noctaliaExe];
+      spawn-at-startup = [
+        noctaliaExe
+        (lib.getExe pkgs.wl-gammarelay-rs)
+      ];
       hotkey-overlay.skip-at-startup = null;
       screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
 
@@ -60,7 +72,10 @@
         {
           "Mod+X" = ipc "sessionMenu toggle";
           "Mod+D" = ipc "launcher toggle";
-          "Mod+S".spawn = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.wlr-which-key;
+          "Mod+S".spawn = lib.getExe (self.packages.${pkgs.stdenv.hostPlatform.system}.wlr-which-key.wrap (import ./_wlr.nix {
+            noctaliaExe = noctaliaExe;
+            inherit lib pkgs self;
+          }));
           "Mod+E".spawn = "nautilus";
           "Mod+T".spawn = lib.getExe config.terminal;
           XF86AudioRaiseVolume = f {allow-when-locked = true;} <| ipc "volume increase";

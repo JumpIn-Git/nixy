@@ -8,7 +8,17 @@
     imports = [inputs.niri.nixosModules.niri];
     programs.niri = {
       enable = true;
-      package = self'.packages.niri // {cargoBuildNoDefaultFeatures = false;};
+      package = self'.packages.niri.wrap {
+        noctalia = self'.packages.noctalia.wrap {
+          configPath = "/home/cinnamon/nix/config/noctalia/"; # use impure path so i can use gui
+        };
+        settings.spawn-at-startup = [
+          [
+            "discord"
+            "--start-minimized"
+          ]
+        ];
+      };
     };
     systemd.user.services.niri-flake-polkit.enable = false;
 
@@ -30,7 +40,6 @@
       };
     };
     environment.systemPackages = with pkgs; [
-      self'.packages.noctalia
       adwaita-icon-theme
       nautilus
       bibata-cursors

@@ -2,21 +2,18 @@
   flake.wrappers.noctalia = {
     pkgs,
     wlib,
+    lib,
+    config,
     ...
-  }: let
-    path = "/home/cinnamon/nix/config/noctalia";
-  in {
+  }:
+  {
     imports = [wlib.modules.default];
-    package = pkgs.noctalia-shell;
-    runtimePkgs = with pkgs; [mission-center gpu-screen-recorder sqlite];
-    env.NOCTALIA_CONFIG_DIR = path;
-    runShell = [
-      # Nice hack, makes config work on systems without repo cloned and changes are written in my local repo
-      ''
-        mkdir -p ${path} && \
-        cp -rn ${../config/noctalia}/. ${path}
-        find ${path} ! -perm -u+w -exec chmod u+w {} +
-      ''
-    ];
+    options.configPath = lib.mkOption {
+      type = lib.types.str;
+      default = "${../config/noctalia}";
+    };
+    config.package = pkgs.noctalia-shell;
+    config.runtimePkgs = with pkgs; [mission-center gpu-screen-recorder sqlite];
+    config.env.NOCTALIA_CONFIG_DIR = config.configPath;
   };
 }

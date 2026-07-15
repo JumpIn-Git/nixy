@@ -54,5 +54,5 @@
           && !hasPrefix "_" f.name)
         ./.
         |> fileset.toList;
-    };
+    } ;
 }
