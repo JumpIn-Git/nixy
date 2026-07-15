@@ -1,22 +1,15 @@
 {
   flake.nixosModules.user = {
-    self',
-    lib,
+    inputs,
+    config,
     ...
   }: {
+    imports = [inputs.self.wrappers.nu.install];
+    wrappers.nu.enable = true;
     users.users.cinnamon = {
       isNormalUser = true;
       extraGroups = ["wheel" "networkmanager" "input"];
-      shell = self'.packages.nu;
+      shell = config.wrappers.nu.wrapper;
     };
-
-    environment.shells = [
-      "/run/current-system/sw/bin/nu"
-      (lib.getExe self'.packages.nu)
-    ];
-
-    environment.systemPackages = [
-      self'.packages.nu
-    ];
   };
 }

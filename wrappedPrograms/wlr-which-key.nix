@@ -1,4 +1,4 @@
-{self, ...}: {
+{
   flake.wrappers.wlr-which-key = {
     pkgs,
     wlib,

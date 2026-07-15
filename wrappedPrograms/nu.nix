@@ -3,10 +3,10 @@
     pkgs,
     wlib,
     ...
-  }: {
+  } @ top: {
     imports = [wlib.wrapperModules.nushell];
-    runtimePkgs = with pkgs; [carapace microfetch];
-    "config.nu".content = ''
+    config.runtimePkgs = with pkgs; [carapace microfetch];
+    config."config.nu".content = ''
       $env.FLAKE = '/home/cinnamon/nix'
       $env.NH_FLAKE = $env.FLAKE
       source ${pkgs.nix-your-shell.generate-config "nu"}
@@ -23,7 +23,7 @@
         }
       }
 
-      use std/config *
+      use std/config env-conversions
       $env.config.hooks.env_change.PWD = $env.config.hooks.env_change.PWD? | default []
       $env.config.hooks.env_change.PWD ++= [{||
         if (which direnv | is-empty) {return}
@@ -32,5 +32,19 @@
         $env.PATH = do (env-conversions).path.from_string $env.PATH
       }]
     '';
+    config.install.modules.nixos = {
+      config,
+      lib,
+      ...
+    }: let
+      wrapperCfg = top.config.install.getWrapperConfig config;
+    in {
+      config = lib.mkIf wrapperCfg.enable {
+        environment.shells = [
+          "/run/current-system/sw/bin/nu"
+          (lib.getExe wrapperCfg.wrapper)
+        ];
+      };
+    };
   };
 }
