@@ -13,6 +13,7 @@
     };
     options.noctalia = lib.mkOption {
       type = lib.types.package;
+      description = "Wrapped noctalia";
       default = self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia;
     };
 
@@ -22,6 +23,10 @@
     };
     config.runtimePkgs = with pkgs; [wl-clipboard];
 
+    config.extraSettings = [
+      {include = [{optional = true;} "~/.config/niri/noctalia.kdl"];}
+      {include = [{optional = true;} "~/.config/niri/monitors.kdl"];}
+    ];
     config.settings = let
       noctaliaExe = lib.getExe config.noctalia;
       null = _: {};
@@ -29,7 +34,7 @@
     in {
       xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
       debug.honor-xdg-activation-with-invalid-serial = null;
-      output = f ["eDP-1"] {scale = 1.1;};
+      # output = f ["eDP-1"] {scale = 1.1;};
       input = {
         workspace-auto-back-and-forth = null;
         focus-follows-mouse = null;
@@ -63,7 +68,6 @@
           width = 4;
         };
       };
-      include = [{optional = true;} "~/.config/niri/noctalia.kdl"];
 
       binds = let
         n = lib.range 1 9;
@@ -72,11 +76,8 @@
         {
           "Mod+X" = ipc "sessionMenu toggle";
           "Mod+D" = ipc "launcher toggle";
-          "Mod+S".spawn = lib.getExe (self.packages.${pkgs.stdenv.hostPlatform.system}.wlr-which-key.wrap (import ./_wlr.nix {
-            noctaliaExe = noctaliaExe;
-            inherit lib pkgs self;
-          }));
-          "Mod+E".spawn = "nautilus";
+          "Mod+S".spawn = lib.getExe config.wlr-which-key;
+          "Mod+E".spawn = lib.getExe pkgs.nautilus;
           "Mod+T".spawn = lib.getExe config.terminal;
           XF86AudioRaiseVolume = f {allow-when-locked = true;} <| ipc "volume increase";
           XF86AudioLowerVolume = f {allow-when-locked = true;} <| ipc "volume decrease";

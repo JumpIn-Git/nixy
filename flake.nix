@@ -34,6 +34,10 @@
     };
 
     niri.url = "github:sodiboo/niri-flake";
+    monique = {
+      url = "github:ToRvaLDz/monique";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     noctalia.url = "github:noctalia-dev/noctalia-shell";
     helium = {
       url = "github:schembriaiden/helium-browser-nix-flake";
@@ -54,5 +58,5 @@
           && !hasPrefix "_" f.name)
         ./.
         |> fileset.toList;
-    } ;
+    };
 }

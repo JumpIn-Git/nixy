@@ -13,10 +13,7 @@
           configPath = "/home/cinnamon/nix/config/noctalia/"; # use impure path so i can use gui
         };
         settings.spawn-at-startup = [
-          [
             "discord"
-            "--start-minimized"
-          ]
         ];
       };
     };

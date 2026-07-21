@@ -8,14 +8,18 @@
     imports = [inputs.n-i-d.nixosModules.default];
     nixpkgs.config.allowUnfree = true;
     nix = {
+      optimise.automatic = true;
       registry.n.flake = inputs.nixpkgs-unfree;
       channel.enable = false;
       settings =
-        {
+        let cfg = (import ../../flake.nix).nixConfig;
+        in {
           auto-optimise-store = true;
           trusted-users = ["@wheel"];
-        }
-        // (import ../../flake.nix).nixConfig;
+          inherit (cfg) extra-experimental-features;
+          substituters = cfg.extra-substituters;
+          trusted-public-keys = cfg.extra-trusted-public-keys;
+        };
     };
     programs.git.enable = true;
     programs = {
@@ -33,6 +37,7 @@
       ripgrep
       fd
       undollar
+      usbutils
     ];
 
     networking.hostName = "nixos"; # Define your hostname.

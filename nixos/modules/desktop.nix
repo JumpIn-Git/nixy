@@ -13,14 +13,10 @@
         appId = "com.stremio.Stremio";
         commit = "355c42ab40cc747bf964118d0795b36f62e8e1c7c10a2f4b71653992ce828db8"; # use older version
       }
-      "com.modrinth.ModrinthApp"
     ];
 
     environment.systemPackages = with pkgs; [
       libnotify
-      usbutils
-      wl-gammarelay-rs
-      wl-gammarelay-applet
 
       zed-editor
       self'.packages.mpv

@@ -8,6 +8,7 @@
       lazygit
       opencode
       antigravity-cli
+      sqlc
 
       nixd
       alejandra
