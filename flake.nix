@@ -40,7 +40,7 @@
     };
     noctalia.url = "github:noctalia-dev/noctalia-shell";
     helium = {
-      url = "github:schembriaiden/helium-browser-nix-flake";
+      url = "github:greyxp1/helium-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

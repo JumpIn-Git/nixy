@@ -79,12 +79,19 @@
           "Mod+S".spawn = lib.getExe config.wlr-which-key;
           "Mod+E".spawn = lib.getExe pkgs.nautilus;
           "Mod+T".spawn = lib.getExe config.terminal;
+
           XF86AudioRaiseVolume = f {allow-when-locked = true;} <| ipc "volume increase";
           XF86AudioLowerVolume = f {allow-when-locked = true;} <| ipc "volume decrease";
           XF86AudioMute = f {allow-when-locked = true;} <| ipc "volume muteOutput";
           XF86AudioMicMute = f {allow-when-locked = true;} <| ipc "volume muteInput";
           XF86MonBrightnessUp = f {allow-when-locked = true;} <| ipc "brightness increase";
           XF86MonBrightnessDown = f {allow-when-locked = true;} <| ipc "brightness decrease";
+
+          XF86AudioPlay  = f { allow-when-locked = true; } <| ipc "media playPause";
+          XF86AudioPause = f { allow-when-locked = true; } <| ipc "media pause";
+          XF86AudioNext  = f { allow-when-locked = true; } <| ipc "media next";
+          XF86AudioPrev  = f { allow-when-locked = true; } <| ipc "media previous";
+          XF86AudioStop  = f { allow-when-locked = true; } <| ipc "media stop";
 
           "Mod+O" = f {repeat = false;} {toggle-overview = null;};
           "Mod+Q" = f {repeat = false;} {close-window = null;};

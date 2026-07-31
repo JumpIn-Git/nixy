@@ -8,7 +8,6 @@
     imports = [inputs.n-i-d.nixosModules.default];
     nixpkgs.config.allowUnfree = true;
     nix = {
-      optimise.automatic = true;
       registry.n.flake = inputs.nixpkgs-unfree;
       channel.enable = false;
       settings =

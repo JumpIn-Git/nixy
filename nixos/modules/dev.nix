@@ -9,6 +9,7 @@
       opencode
       antigravity-cli
       sqlc
+      zed-editor
 
       nixd
       alejandra
@@ -21,5 +22,10 @@
       basedpyright
       ruff
     ];
+
+    environment.variables = { EDITOR = "zeditor --wait"; VISUAL = "zeditor --wait"; };
+    xdg.mime.defaultApplications = {
+      "text/plain" = "dev.zed.Zed.desktop";
+    };
   };
 }

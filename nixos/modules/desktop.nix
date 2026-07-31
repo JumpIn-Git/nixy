@@ -18,10 +18,9 @@
     environment.systemPackages = with pkgs; [
       libnotify
 
-      zed-editor
       self'.packages.mpv
       obsidian
-      self'.packages.zennotes
+      zennotes-desktop
       pandoc
       parabolic
       loupe
@@ -35,7 +34,6 @@
     programs.obs-studio.enable = true;
 
     xdg.mime.defaultApplications = {
-      "text/plain" = "dev.zed.Zed.desktop";
       "text/html" = "helium.desktop";
       "video/*" = "mpv.desktop";
       "application/x-bittorrent" = ["org.qbittorrent.qBittorrent.desktop"];
