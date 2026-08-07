@@ -17,15 +17,15 @@
       default = self.packages.${pkgs.stdenv.hostPlatform.system}.noctalia;
     };
 
-    config.package = pkgs.niri-unstable;
-    config.drv = {
-      inherit (config.package) cargoBuildNoDefaultFeatures cargoBuildFeatures; # niri flake uses this
-    };
+    config.package = pkgs.niri;
     config.runtimePkgs = with pkgs; [wl-clipboard];
+    config.env = {
+      XCURSOR_PATH = "${pkgs.bibata-cursors}/share/icons";
+    };
 
     config.extraSettings = [
       {include = [{optional = true;} "~/.config/niri/noctalia.kdl"];}
-      {include = [{optional = true;} "~/.config/niri/monitors.kdl"];}
+      {include = [{optional = true;} "~/.config/niri/monitor.kdl"];}
     ];
     config.settings = let
       noctaliaExe = lib.getExe config.noctalia;
@@ -34,7 +34,6 @@
     in {
       xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
       debug.honor-xdg-activation-with-invalid-serial = null;
-      # output = f ["eDP-1"] {scale = 1.1;};
       input = {
         workspace-auto-back-and-forth = null;
         focus-follows-mouse = null;
@@ -87,11 +86,11 @@
           XF86MonBrightnessUp = f {allow-when-locked = true;} <| ipc "brightness increase";
           XF86MonBrightnessDown = f {allow-when-locked = true;} <| ipc "brightness decrease";
 
-          XF86AudioPlay  = f { allow-when-locked = true; } <| ipc "media playPause";
-          XF86AudioPause = f { allow-when-locked = true; } <| ipc "media pause";
-          XF86AudioNext  = f { allow-when-locked = true; } <| ipc "media next";
-          XF86AudioPrev  = f { allow-when-locked = true; } <| ipc "media previous";
-          XF86AudioStop  = f { allow-when-locked = true; } <| ipc "media stop";
+          XF86AudioPlay = f {allow-when-locked = true;} <| ipc "media playPause";
+          XF86AudioPause = f {allow-when-locked = true;} <| ipc "media pause";
+          XF86AudioNext = f {allow-when-locked = true;} <| ipc "media next";
+          XF86AudioPrev = f {allow-when-locked = true;} <| ipc "media previous";
+          XF86AudioStop = f {allow-when-locked = true;} <| ipc "media stop";
 
           "Mod+O" = f {repeat = false;} {toggle-overview = null;};
           "Mod+Q" = f {repeat = false;} {close-window = null;};

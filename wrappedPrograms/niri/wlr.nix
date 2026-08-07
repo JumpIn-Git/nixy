@@ -1,4 +1,4 @@
-{self,inputs, ...}: {
+{self, ...}: {
   flake.wrappers.niri = {
     pkgs,
     lib,
@@ -14,8 +14,8 @@
         in [
           {
             key = "m";
-            cmd = lib.getExe inputs.monique.packages.${pkgs.stdenv.hostPlatform.system}.default;
-            desc = "Monique";
+            cmd = lib.getExe pkgs.nwg-displays;
+            desc = "Display configuration";
           }
           {
             key = "g";

@@ -52,21 +52,5 @@
       pulse.enable = true;
     };
     hardware.bluetooth.enable = true;
-
-    # nixpkgs.overlays = [
-    #   (final: prev: {
-    #     fwupd = prev.fwupd.overrideAttrs (oldAttrs: {
-    #       patches =
-    #         (oldAttrs.patches or [])
-    #         ++ [
-    #           (final.fetchpatch {
-    #             name = "fwupd-jcat-limit-fix.patch";
-    #             url = "https://github.com/fwupd/fwupd/pull/10479.patch";
-    #             hash = "sha256-wthjHm3yjevkOCAqCgZNpyybbI3TZ+07knOdRbUQV7g=";
-    #           })
-    #         ];
-    #     });
-    #   })
-    # ];
   };
 }

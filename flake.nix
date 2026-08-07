@@ -33,11 +33,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    niri.url = "github:sodiboo/niri-flake";
-    monique = {
-      url = "github:ToRvaLDz/monique";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     noctalia.url = "github:noctalia-dev/noctalia-shell";
     helium = {
       url = "github:greyxp1/helium-flake";

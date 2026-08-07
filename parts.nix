@@ -9,7 +9,6 @@
   ];
 
   flake.overlays.default = lib.composeManyExtensions [
-    inputs.niri.overlays.niri
     inputs.noctalia.overlays.default
   ];
 

@@ -1,48 +1,18 @@
 {
   flake.nixosModules.niri = {
-    pkgs,
-    inputs,
     self',
+    inputs,
     ...
   }: let
     noctalia-wrapped = self'.packages.noctalia.wrap {
       configPath = "/home/cinnamon/nix/config/noctalia/"; # use impure path so i can use gui
     };
   in {
-    imports = [inputs.niri.nixosModules.niri];
-    programs.niri = {
+    imports = [inputs.self.wrappers.niri.install];
+    wrappers.niri = {
       enable = true;
-      package = self'.packages.niri.wrap {
-        noctalia = noctalia-wrapped;
-        settings.spawn-at-startup = [
-          "discord"
-        ];
-      };
+      noctalia = noctalia-wrapped;
+      settings.spawn-at-startup = [["discord" "--start-minimized"]];
     };
-    systemd.user.services.niri-flake-polkit.enable = false;
-
-    services = {
-      upower.enable = true;
-      dbus.packages = [pkgs.nautilus];
-      gvfs.enable = true;
-    };
-    programs.nautilus-open-any-terminal.enable = true;
-    programs.nautilus-open-any-terminal.terminal = "ghostty";
-
-    services.displayManager.ly = {
-      enable = true;
-      settings = {
-        animation = "colormix";
-        bigclock = "en";
-        hide_borders = true;
-        text_in_center = true;
-      };
-    };
-    environment.systemPackages = with pkgs; [
-      adwaita-icon-theme
-      nautilus
-      bibata-cursors
-      noctalia-wrapped
-    ];
   };
 }
