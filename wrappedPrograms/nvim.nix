@@ -1,7 +1,6 @@
 {
   flake.wrappers.nvim = {
     wlib,
-    config,
     pkgs,
     ...
   }: {

@@ -1,22 +1,15 @@
 {
   inputs,
-  lib,
-  self,
   ...
 }: {
   imports = [
     inputs.wrappers.flakeModules.wrappers
   ];
 
-  flake.overlays.default = lib.composeManyExtensions [
-    inputs.noctalia.overlays.default
-  ];
-
   perSystem = {system, ...}: {
     _module.args.pkgs = import inputs.nixpkgs {
       inherit system;
       config.allowUnfree = true;
-      overlays = [self.overlays.default];
     };
   };
 

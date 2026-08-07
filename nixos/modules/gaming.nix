@@ -1,7 +1,7 @@
 {
   flake.nixosModules.gaming = {pkgs, ...}: {
     programs.steam = {
-      enable = false;
+      enable = true;
       extraCompatPackages = [pkgs.proton-ge-bin];
     };
 
