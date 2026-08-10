@@ -19,9 +19,9 @@
 
     config.package = pkgs.niri;
     config.runtimePkgs = with pkgs; [wl-clipboard];
-    config.env = {
-      XCURSOR_PATH = "${pkgs.bibata-cursors}/share/icons";
-    };
+    config.prefixVar = [
+      ["XCURSOR_PATH" ":" "${pkgs.bibata-cursors}/share/icons"]
+    ];
 
     config.extraSettings = [
       {include = [{optional = true;} "~/.config/niri/noctalia.kdl"];}

@@ -1,20 +1,26 @@
-{self, ...}: {
+{
+  self,
+  inputs,
+  ...
+}: {
   flake.wrappers.niri = {
     pkgs,
     lib,
     config,
     ...
-  }: {
+  }: let
+    inherit (pkgs.stdenv.hostPlatform) system;
+  in {
     options.wlr-which-key = lib.mkOption {
       type = lib.types.package;
       description = "Wrapped wlr-which-key";
-      default = self.packages.${pkgs.stdenv.hostPlatform.system}.wlr-which-key.wrap {
+      default = self.packages.${system}.wlr-which-key.wrap {
         settings.menu = let
           noctaliaExe = lib.getExe config.noctalia;
         in [
           {
             key = "m";
-            cmd = lib.getExe pkgs.nwg-displays;
+            cmd = lib.getExe inputs.monique.packages.${system}.default;
             desc = "Display configuration";
           }
           {
@@ -39,7 +45,7 @@
           }
           {
             key = "t";
-            cmd = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.niri-ocr;
+            cmd = lib.getExe self.packages.${system}.niri-ocr;
             desc = "Screenshot OCR";
           }
           {

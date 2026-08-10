@@ -15,6 +15,8 @@
       url = "github:numtide/nixpkgs-unfree";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # latest nixpkgs commit with legacy stremio, this  version is unsafe, use at your own risk
+    nixpkgs-stremio.url = "github:nixos/nixpkgs/66d9241e3dc2296726dc522e62dbfe89c7b449f3";
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
     n-i-d = {
@@ -35,6 +37,10 @@
 
     helium = {
       url = "github:greyxp1/helium-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    monique = {
+      url = "github:ToRvaLDz/monique";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

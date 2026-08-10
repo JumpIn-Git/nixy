@@ -80,11 +80,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786009900,
-        "narHash": "sha256-JC9rDuBOwomHxVqSW5gANl1TJ+TRU7UNkqNers9anLg=",
+        "lastModified": 1786179630,
+        "narHash": "sha256-Q8izTlAQfkUoruJrPz47fy07BT7E/WWT9jeYGIPTwt8=",
         "owner": "greyxp1",
         "repo": "helium-flake",
-        "rev": "acba5cb4ed203c96014ce59bd83d832919c5cc38",
+        "rev": "923dcc31bfc3222820b4c6f18b9e9382c5b2a992",
         "type": "github"
       },
       "original": {
@@ -218,6 +218,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-stremio": {
+      "locked": {
+        "lastModified": 1772674223,
+        "narHash": "sha256-/suKbHSaSmuC9UY7G0VRQ3aO+QKqxAQPQ19wG7QNkF8=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "66d9241e3dc2296726dc522e62dbfe89c7b449f3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "66d9241e3dc2296726dc522e62dbfe89c7b449f3",
+        "type": "github"
+      }
+    },
     "nixpkgs-unfree": {
       "inputs": {
         "nixpkgs": [
@@ -334,6 +350,7 @@
         "nix-flatpak": "nix-flatpak",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_4",
+        "nixpkgs-stremio": "nixpkgs-stremio",
         "nixpkgs-unfree": "nixpkgs-unfree",
         "parts": "parts",
         "wrappers": "wrappers"
