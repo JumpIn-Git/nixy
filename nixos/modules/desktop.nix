@@ -6,14 +6,14 @@
     self',
     ...
   }: {
-    imports = [inputs.nix-flatpak.nixosModules.nix-flatpak];
-    services.flatpak.enable = true;
-    services.flatpak.packages = [
-      {
-        appId = "com.stremio.Stremio";
-        commit = "355c42ab40cc747bf964118d0795b36f62e8e1c7c10a2f4b71653992ce828db8"; # use older version
-      }
-    ];
+    # imports = [inputs.nix-flatpak.nixosModules.nix-flatpak];
+    # services.flatpak.enable = true;
+    # services.flatpak.packages = [
+    #   {
+    #     appId = "com.stremio.Stremio";
+    #     commit = "355c42ab40cc747bf964118d0795b36f62e8e1c7c10a2f4b71653992ce828db8"; # use older version
+    #   }
+    # ];
 
     environment.systemPackages = with pkgs; [
       libnotify
@@ -24,6 +24,8 @@
       pandoc
       parabolic
       loupe
+      gnome-clocks
+      gnome-calculator
 
       discord
       qbittorrent

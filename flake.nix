@@ -1,11 +1,12 @@
 {
   nixConfig = {
-    extra-substituters = ["https://noctalia.cachix.org" "https://niri.cachix.org" "https://jump1n.cachix.org" "https://lanzaboote.cachix.org"];
+    extra-substituters = ["https://noctalia.cachix.org" "https://niri.cachix.org" "https://jump1n.cachix.org" "https://lanzaboote.cachix.org" "https://finix.cachix.org"];
     extra-trusted-public-keys = [
       "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
       "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
       "jump1n.cachix.org-1:duG5cdEwJOCp/NJJ18hSOk+0NPWEDcjeGA1/fv7WlLA="
       "lanzaboote.cachix.org-1:Nt9//zGmqkg1k5iu+B3bkj3OmHKjSw9pvf3faffLLNk="
+      "finix.cachix.org-1:0ejikHDeCp0UErsduUUHcg9IJczY2/h2e5132Z/As/c="
     ];
     extra-experimental-features = ["nix-command" "flakes" "pipe-operators"];
   };
@@ -17,6 +18,8 @@
     };
     # latest nixpkgs commit with legacy stremio, this  version is unsafe, use at your own risk
     nixpkgs-stremio.url = "github:nixos/nixpkgs/66d9241e3dc2296726dc522e62dbfe89c7b449f3";
+    finix.url = "github:finix-community/finix";
+    community-modules.url = "github:finix-community/community-modules";
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
     n-i-d = {

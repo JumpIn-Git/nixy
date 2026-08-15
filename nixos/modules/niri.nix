@@ -12,5 +12,9 @@
       };
       settings.spawn-at-startup = [["discord" "--start-minimized"]];
     };
+    xdg.terminal-exec = {
+      enable = true;
+      settings.default=["com.mitchellh.ghostty.desktop"];
+    };
   };
 }

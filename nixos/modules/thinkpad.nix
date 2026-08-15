@@ -9,39 +9,58 @@
       inputs.lanzaboote.nixosModules.lanzaboote
       ../_hw.nix
     ];
+    hardware.facter.reportPath = ../facter.json;
 
     services.tlp.pd.enable = true;
-    system.stateVersion = "25.11";
     services.fwupd.enable = true;
-    environment.systemPackages = [pkgs.firmware-updater pkgs.sbctl];
-    boot.lanzaboote = {
+    hardware.bluetooth = {
       enable = true;
-      pkiBundle = "/var/lib/sbctl";
-      autoGenerateKeys.enable = true;
-      autoEnrollKeys = {
-        enable = true;
-        autoReboot = true;
+      powerOnBoot = true;
+      settings = {
+        General = {
+          Experimental = true;
+        };
       };
     };
+    environment.systemPackages = with pkgs; [
+      firmware-updater
+      sbctl
+      overskride
+    ];
 
-    programs.appimage.enable = true;
-    programs.appimage.binfmt = true;
-    users.groups.battery_ctl = {};
-    users.users.cinnamon.extraGroups = ["battery_ctl"];
-    services.udev.extraRules = ''
-      SUBSYSTEM=="power_supply", KERNEL=="BAT*", \
-        ATTR{charge_control_end_threshold}=="*", \
-        RUN+="${pkgs.coreutils}/bin/chgrp battery_ctl /sys$devpath/charge_control_end_threshold", \
-        RUN+="${pkgs.coreutils}/bin/chmod g+w /sys$devpath/charge_control_end_threshold"
-    '';
-
+    boot.loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
+      };
+      grub = {
+        enable = true;
+        efiSupport = true;
+        device = "nodev";
+      };
+    };
+    # boot.lanzaboote = {
+    #   enable = true;
+    #   pkiBundle = "/var/lib/sbctl";
+    #   autoGenerateKeys.enable = true;
+    #   autoEnrollKeys = {
+    #     enable = true;
+    #     autoReboot = true;
+    #   };
+    # };
     swapDevices = [
       {
         device = "/var/lib/swapfile";
         size = 4 * 1024;
       }
     ];
-    boot.zswap.enable = true;
+    # boot.zswap.enable = true;
+
+    programs.appimage.enable = true;
+    programs.appimage.binfmt = true;
+    systemd.tmpfiles.rules = [
+      "z /sys/class/power_supply/BAT*/charge_control_end_threshold 0664 root battery_ctl - -"
+    ];
 
     services.pipewire = {
       enable = true;
@@ -51,6 +70,7 @@
       };
       pulse.enable = true;
     };
-    hardware.bluetooth.enable = true;
+
+    system.stateVersion = "25.11";
   };
 }

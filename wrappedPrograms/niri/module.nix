@@ -30,8 +30,8 @@
           upower.enable = true;
           gvfs.enable = true;
         };
-        programs.nautilus-open-any-terminal.enable = true;
-        programs.nautilus-open-any-terminal.terminal = "ghostty";
+        # programs.nautilus-open-any-terminal.enable = true;
+        # programs.nautilus-open-any-terminal.terminal = "ghostty";
 
         services.displayManager.ly = {
           enable = true;
@@ -44,6 +44,7 @@
         };
         environment.systemPackages = [
           wrapperCfg.noctalia
+          wrapperCfg.terminal
           pkgs.adwaita-icon-theme
         ];
       };
