@@ -2,7 +2,6 @@
   flake.nixosModules.core = {
     inputs,
     pkgs,
-    lib,
     ...
   }: {
     imports = [inputs.n-i-d.nixosModules.default];
@@ -10,15 +9,15 @@
     nix = {
       registry.n.flake = inputs.nixpkgs-unfree;
       channel.enable = false;
-      settings =
-        let cfg = (import ../../flake.nix).nixConfig;
-        in {
-          auto-optimise-store = true;
-          trusted-users = ["@wheel"];
-          inherit (cfg) extra-experimental-features;
-          substituters = cfg.extra-substituters;
-          trusted-public-keys = cfg.extra-trusted-public-keys;
-        };
+      settings = let
+        cfg = (import ../../flake.nix).nixConfig;
+      in {
+        auto-optimise-store = true;
+        trusted-users = ["@wheel"];
+        inherit (cfg) extra-experimental-features;
+        substituters = cfg.extra-substituters;
+        trusted-public-keys = cfg.extra-trusted-public-keys;
+      };
     };
     programs.git.enable = true;
     programs = {

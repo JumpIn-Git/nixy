@@ -16,7 +16,7 @@
       url = "github:numtide/nixpkgs-unfree";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # latest nixpkgs commit with legacy stremio, this  version is unsafe, use at your own risk
+    # legacy stremio in cachix, this version is unsafe, use at your own risk
     nixpkgs-stremio.url = "github:nixos/nixpkgs/66d9241e3dc2296726dc522e62dbfe89c7b449f3";
     finix.url = "github:finix-community/finix";
     community-modules.url = "github:finix-community/community-modules";
@@ -26,7 +26,6 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
     lanzaboote.url = "github:nix-community/lanzaboote/v1.1.0";
 
     parts = {

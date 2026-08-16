@@ -10,6 +10,7 @@
       antigravity-cli
       sqlc
       zed-editor
+      cachix
 
       nixd
       alejandra
@@ -23,7 +24,10 @@
       ruff
     ];
 
-    environment.variables = { EDITOR = "zeditor --wait"; VISUAL = "zeditor --wait"; };
+    environment.variables = {
+      EDITOR = "zeditor --wait";
+      VISUAL = "zeditor --wait";
+    };
     xdg.mime.defaultApplications = {
       "text/plain" = "dev.zed.Zed.desktop";
     };

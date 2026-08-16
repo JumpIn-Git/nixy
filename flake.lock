@@ -32,11 +32,11 @@
     },
     "finix": {
       "locked": {
-        "lastModified": 1786589507,
-        "narHash": "sha256-AcviKbH6Uu0iWrSmRC5mgb0QLUCpl15CvOaPck+vd2c=",
+        "lastModified": 1786811382,
+        "narHash": "sha256-SNaqhco+byhYb1LUe2s7QBAjdjJlAV5sXUlQgGoa6g0=",
         "owner": "finix-community",
         "repo": "finix",
-        "rev": "ae76dcf27e1a11418f24cca0f1fbe7ad4bdcf632",
+        "rev": "ca9b9db42f46ed81e7d6f224c52c8459437df5c0",
         "type": "github"
       },
       "original": {
@@ -203,32 +203,16 @@
         "type": "github"
       }
     },
-    "nix-flatpak": {
-      "locked": {
-        "lastModified": 1767983141,
-        "narHash": "sha256-7ZCulYUD9RmJIDULTRkGLSW1faMpDlPKcbWJLYHoXcs=",
-        "owner": "gmodena",
-        "repo": "nix-flatpak",
-        "rev": "440818969ac2cbd77bfe025e884d0aa528991374",
-        "type": "github"
-      },
-      "original": {
-        "owner": "gmodena",
-        "ref": "latest",
-        "repo": "nix-flatpak",
-        "type": "github"
-      }
-    },
     "nixos-hardware": {
       "inputs": {
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1786528975,
-        "narHash": "sha256-8KuasCs+mVQ7WbLONUf/QB7NZeQvovyXRyxAj4nOOzY=",
+        "lastModified": 1786717298,
+        "narHash": "sha256-asdPlqtM0AweQ5YNLad6eY4tSYW55YNr1uyayf7mOMQ=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "3e7edd9afe17e45521300e041c65de3015f4a302",
+        "rev": "2dda192987ab6815e44df0130f03d6c907b79134",
         "type": "github"
       },
       "original": {
@@ -400,7 +384,6 @@
         "lanzaboote": "lanzaboote",
         "monique": "monique",
         "n-i-d": "n-i-d",
-        "nix-flatpak": "nix-flatpak",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-stremio": "nixpkgs-stremio",

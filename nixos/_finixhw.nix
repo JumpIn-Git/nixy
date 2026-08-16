@@ -8,28 +8,26 @@
   modulesPath,
   ...
 }: {
-  hardware.firmware = with pkgs; [
-    linux-firmware
-    sof-firmware
-  ];
-
   boot.initrd.availableKernelModules = ["nvme" "ehci_pci" "xhci_pci_renesas" "xhci_pci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/984f4841-b968-4f91-89aa-fca8557cf5f3";
+    device = "/dev/disk/by-uuid/bbaf664e-717f-48ec-bef3-23607a458a68";
     fsType = "ext4";
   };
 
-  fileSystems."/boot/efi" = {
+  fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/082E-F7DC";
     fsType = "vfat";
-    options = ["fmask=0022" "dmask=0022"];
+    options = ["fmask=0077" "dmask=0077"];
   };
 
   swapDevices = [];
 
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault true;
+  hardware.firmware = [
+    pkgs.linux-firmware
+    pkgs.sof-firmware
+  ];
 }

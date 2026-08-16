@@ -3,10 +3,13 @@
     modules,
     pkgs,
     self',
+    lib,
     ...
   }: {
     imports = with modules; [
+      ../_finixhw.nix
       self.nixosModules.user
+      limine
       niri
       atd
       bash
@@ -57,16 +60,10 @@
 
     fonts.fontconfig.enable = true;
     fonts.enableDefaultPackages = true;
-    hardware.firmware = with pkgs; [
-      linux-firmware
-      sof-firmware
-    ];
     hardware.graphics.enable = true;
 
     programs.bash.enable = true;
     services.getty.enable = true;
-    # services.greetd.enable = true;
-    # programs.regreet.enable = true;
     programs.sudo.enable = true;
 
     programs.brightnessctl.enable = true;
@@ -90,36 +87,26 @@
     services.fcron.enable = true;
     services.fwupd.enable = true;
     services.nix-daemon.enable = true;
+    services.nix-daemon.settings = let
+      cfg = (import ../../flake.nix).nixConfig;
+    in {
+      auto-optimise-store = true;
+      trusted-users = ["@wheel" "root"];
+      inherit (cfg) extra-experimental-features;
+      substituters = cfg.extra-substituters;
+      trusted-public-keys = cfg.extra-trusted-public-keys;
+    };
     services.polkit.enable = true;
     services.tlp.enable = true;
     services.rtkit.enable = true;
     services.sysklogd.enable = true;
     services.udisks2.enable = true;
     services.upower.enable = true;
+    programs.limine.enable = true;
 
     xdg.autostart.enable = true;
     xdg.icons.enable = true;
     xdg.mime.enable = true;
     xdg.portal.enable = true;
-
-    boot.initrd.availableKernelModules = ["nvme" "ehci_pci" "xhci_pci_renesas" "xhci_pci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
-    boot.initrd.kernelModules = [];
-    boot.kernelModules = ["kvm-amd"];
-    boot.extraModulePackages = [];
-
-    fileSystems."/" = {
-      device = "/dev/disk/by-uuid/984f4841-b968-4f91-89aa-fca8557cf5f3";
-      fsType = "ext4";
-    };
-
-    fileSystems."/boot" = {
-      device = "/dev/disk/by-uuid/082E-F7DC";
-      fsType = "vfat";
-      options = ["fmask=0077" "dmask=0077"];
-    };
-
-    swapDevices = [];
-
-    hardware.cpu.amd.updateMicrocode = true;
   };
 }
