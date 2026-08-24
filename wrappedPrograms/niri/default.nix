@@ -45,9 +45,16 @@
       spawn-at-startup = [
         noctaliaExe
         (lib.getExe pkgs.wl-gammarelay-rs)
+        [(lib.getExe pkgs.xhost) "+si:localuser:root"]
       ];
       hotkey-overlay.skip-at-startup = null;
       screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
+      layer-rule = _: {
+        content = {
+          match = _: {props = {namespace="waybar";};};
+          block-out-from = "screencast";
+        };
+      };
 
       prefer-no-csd = null;
       animations.slowdown = 1.4;

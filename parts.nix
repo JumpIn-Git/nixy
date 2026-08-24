@@ -4,10 +4,7 @@
   ];
 
   perSystem = {system, ...}: {
-    _module.args.pkgs = import inputs.nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    };
+    _module.args.pkgs = inputs.nixpkgs-unfree.legacyPackages.${system};
   };
 
   systems = ["x86_64-linux"]; # TODO

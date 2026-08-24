@@ -1,23 +1,25 @@
 {
   flake.nixosModules.desktop = {
     pkgs,
-    inputs,
     inputs',
     self',
     ...
   }: {
+    services.flatpak.enable = true;
     environment.systemPackages = with pkgs; [
       libnotify
+      ffmpeg
 
       self'.packages.mpv
       self'.packages.stremio-legacy
       obsidian
-      zennotes-desktop
       pandoc
+      zennotes-desktop
       parabolic
       loupe
       gnome-clocks
       gnome-calculator
+      cheese
 
       discord
       qbittorrent
@@ -25,7 +27,10 @@
       proton-pass
     ];
     programs.localsend.enable = true;
-    programs.obs-studio.enable = true;
+    programs.obs-studio = {
+      enable = true;
+      enableVirtualCamera = true;
+    };
 
     xdg.mime.defaultApplications = {
       "text/html" = "helium.desktop";

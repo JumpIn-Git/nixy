@@ -7,8 +7,6 @@
     imports = [wlib.wrapperModules.nushell];
     config.runtimePkgs = with pkgs; [carapace microfetch];
     config."config.nu".content = ''
-      $env.FLAKE = '/home/cinnamon/nix'
-      $env.NH_FLAKE = $env.FLAKE
       source ${pkgs.nix-your-shell.generate-config "nu"}
 
       $env.config = {

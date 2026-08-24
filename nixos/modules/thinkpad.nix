@@ -6,7 +6,6 @@
   }: {
     imports = [
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen1
-      inputs.lanzaboote.nixosModules.lanzaboote
       ../_hw.nix
     ];
     hardware.facter.reportPath = ../facter.json;
@@ -39,15 +38,6 @@
         device = "nodev";
       };
     };
-    # boot.lanzaboote = {
-    #   enable = true;
-    #   pkiBundle = "/var/lib/sbctl";
-    #   autoGenerateKeys.enable = true;
-    #   autoEnrollKeys = {
-    #     enable = true;
-    #     autoReboot = true;
-    #   };
-    # };
     swapDevices = [
       {
         device = "/var/lib/swapfile";

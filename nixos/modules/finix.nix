@@ -3,7 +3,6 @@
     modules,
     pkgs,
     self',
-    lib,
     ...
   }: {
     imports = with modules; [
