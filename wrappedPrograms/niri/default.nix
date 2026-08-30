@@ -49,11 +49,10 @@
       ];
       hotkey-overlay.skip-at-startup = null;
       screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
-      layer-rule = _: {
-        content = {
-          match = _: {props = {namespace="waybar";};};
-          block-out-from = "screencast";
-        };
+      environment = {
+        NIXOS_OZONE_WL = "1";
+        GDK_BACKEND = "wayland,x11";
+        SLD_VIDEODRIVER = "wayland";
       };
 
       prefer-no-csd = null;

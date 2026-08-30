@@ -6,12 +6,12 @@
       uv
       gh
       lazygit
-      opencode
       sqlc
       goose
       zed-editor
       cachix
       ventoy-full-gtk
+      qwen-code
       (symlinkJoin {
         name = "recaf-launcher-with-desktop";
         paths = [recaf-launcher];

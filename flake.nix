@@ -44,15 +44,6 @@
       url = "github:ToRvaLDz/monique";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    umbriel = {
-      url = "git+https://github.com/noctalia-dev/umbriel?rev=dd8b3565f9a776c9d7686fa879852c271542a53b";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    xdg-desktop-portal-umbriel = {
-      url = "github:noctalia-dev/xdg-desktop-portal-umbriel?rev=c8a9a223d48e6c62652f3f3cfaaa0f50aca39146";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {

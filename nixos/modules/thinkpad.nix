@@ -44,7 +44,12 @@
         size = 4 * 1024;
       }
     ];
-    # boot.zswap.enable = true;
+    systemd.oomd = {
+      enable = true;
+      enableUserSlices = true;
+      enableSystemSlice = false;
+    };
+    boot.zswap.enable = true;
 
     programs.appimage.enable = true;
     programs.appimage.binfmt = true;

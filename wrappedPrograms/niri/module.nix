@@ -16,7 +16,6 @@
         };
         security.polkit.enablePkexecWrapper = true;
         environment.etc."xdg/quickshell".source = wrapperCfg.noctalia + /share/noctalia-shell;
-        environment.sessionVariables.NIXOS_OZONE_WL = 1;
 
         services = {
           upower.enable = true;

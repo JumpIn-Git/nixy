@@ -21,7 +21,9 @@
       gnome-calculator
       cheese
 
-      discord
+      (discord.override {
+        withOpenASAR = true;
+      })
       qbittorrent
       inputs'.helium.packages.default
       proton-pass
