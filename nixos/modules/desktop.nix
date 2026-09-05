@@ -12,12 +12,9 @@
 
       self'.packages.mpv
       self'.packages.stremio-legacy
-      obsidian
-      pandoc
       zennotes-desktop
       parabolic
       loupe
-      gnome-clocks
       gnome-calculator
       cheese
 
@@ -29,8 +26,12 @@
       proton-pass
     ];
     programs.localsend.enable = true;
+    programs.kclock.enable = true;
     programs.obs-studio = {
       enable = true;
+      plugins = with pkgs.obs-studio-plugins; [
+        input-overlay
+      ];
       enableVirtualCamera = true;
     };
 

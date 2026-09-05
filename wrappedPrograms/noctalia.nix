@@ -17,12 +17,7 @@
       gpu-screen-recorder
       sqlite
 
-      grim
       slurp
-      wl-clipboard
-      tesseract
-      imagemagick
-      translate-shell
       wl-screenrec
       ffmpeg
       jq

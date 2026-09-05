@@ -44,11 +44,6 @@
             desc = "Set wallpaper";
           }
           {
-            key = "t";
-            cmd = lib.getExe self.packages.${system}.niri-ocr;
-            desc = "Screenshot OCR";
-          }
-          {
             key = "b";
             cmd = "${noctaliaExe} ipc call plugin:battery-threshold togglePanel";
             desc = "Battery threshold";

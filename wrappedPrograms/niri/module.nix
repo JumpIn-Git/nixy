@@ -38,6 +38,7 @@
           wrapperCfg.terminal
           pkgs.adwaita-icon-theme
           pkgs.nautilus
+          pkgs.bibata-cursors
         ];
       };
     };

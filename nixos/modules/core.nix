@@ -36,6 +36,8 @@
       fd
       undollar
       usbutils
+      file
+      tree
     ];
 
     networking.hostName = "nixos"; # Define your hostname.

@@ -2,6 +2,7 @@
   flake.nixosModules.niri = {
     self',
     inputs,
+    pkgs,
     ...
   }: {
     imports = [inputs.self.wrappers.niri.install ];
@@ -11,6 +12,9 @@
         configPath = "/home/cinnamon/nix/config/noctalia/"; # use impure path so i can use gui
       };
     };
+    environment.systemPackages = with pkgs;[
+      kdePackages.qqc2-desktop-style
+    ];
     qt = {
       enable = true;
       platformTheme = "gnome";

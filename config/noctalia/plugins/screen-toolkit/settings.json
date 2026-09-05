@@ -130,7 +130,7 @@
     "yid",
     "yor"
   ],
-  "transAvailable": true,
+  "transAvailable": false,
   "selectedOcrLang": "eng",
   "screenshotPath": "",
   "videoPath": "",

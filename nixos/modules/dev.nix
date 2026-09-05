@@ -12,25 +12,6 @@
       cachix
       ventoy-full-gtk
       qwen-code
-      (symlinkJoin {
-        name = "recaf-launcher-with-desktop";
-        paths = [recaf-launcher];
-        nativeBuildInputs = [copyDesktopItems];
-        desktopItems = [
-          (makeDesktopItem {
-            name = "recaf-launcher";
-            desktopName = "Recaf";
-            comment = "Java Bytecode Editor";
-            exec = "recaf-launcher";
-            icon = "java";
-            terminal = false;
-            categories = ["Development" "IDE"];
-          })
-        ];
-        postBuild = ''
-          copyDesktopItems
-        '';
-      })
 
       nixd
       alejandra
