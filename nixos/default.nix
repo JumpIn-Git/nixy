@@ -10,13 +10,7 @@
     ...
   }:
     inputs.nixpkgs.lib.nixosSystem {
-      modules =
-        builtins.attrValues inputs.self.nixosModules
-        ++ [
-          ({lib, ...}: {
-            nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-          })
-        ];
+      modules = builtins.attrValues inputs.self.nixosModules;
       specialArgs = {inherit inputs inputs' self';};
     });
   flake.nixosConfigurations.finix = withSystem "x86_64-linux" ({

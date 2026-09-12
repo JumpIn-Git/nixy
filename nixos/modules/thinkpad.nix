@@ -49,9 +49,6 @@
 
     programs.appimage.enable = true;
     programs.appimage.binfmt = true;
-    systemd.tmpfiles.rules = [
-      "z /sys/class/power_supply/BAT*/charge_control_end_threshold 0664 root battery_ctl - -"
-    ];
 
     services.pipewire = {
       enable = true;

@@ -44,6 +44,14 @@
       url = "github:ToRvaLDz/monique";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    slssteam = {
+      url = "github:acesls/slssteam";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    cr = {
+      url = "https://github.com/Selectively11/CloudRedirect/releases/download/v2.6.5/cloud_redirect.so";
+      flake = false;
+    };
   };
 
   outputs = {

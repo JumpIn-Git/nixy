@@ -1,11 +1,16 @@
 {
-  flake.nixosModules.gaming = {pkgs, ...}: {
+  flake.nixosModules.gaming = {
+    pkgs,
+    inputs',
+    ...
+  }: {
     programs.steam = {
       enable = true;
       package = pkgs.steam.override {
-        extraBwrapArgs = [
-          "--setenv LD_AUDIT \"/home/cinnamon/Downloads/library-inject.so:/home/cinnamon/Downloads/SLSsteam.so\""
-        ];
+        extraEnv = {
+          LD_AUDIT = "${inputs'.slssteam.packages.sls-steam}/library-inject.so:${inputs'.slssteam.packages.sls-steam}/SLSsteam.so";
+          # LD_PRELOAD = "${inputs.cr}";
+        };
       };
       extraCompatPackages = [pkgs.proton-ge-bin];
     };
