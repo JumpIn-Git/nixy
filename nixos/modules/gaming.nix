@@ -1,15 +1,18 @@
 {
   flake.nixosModules.gaming = {
     pkgs,
-    inputs',
+    inputs,
     ...
   }: {
     programs.steam = {
       enable = true;
       package = pkgs.steam.override {
-        extraEnv = {
-          LD_AUDIT = "${inputs'.slssteam.packages.sls-steam}/library-inject.so:${inputs'.slssteam.packages.sls-steam}/SLSsteam.so";
-          # LD_PRELOAD = "${inputs.cr}";
+        extraEnv = let
+          extracted = pkgs.runCommand "extract-7z" {nativeBuildInputs = [pkgs.p7zip];} ''
+            7z x ${inputs.slssteam} -o$out
+          '';
+        in {
+          LD_AUDIT = "${extracted}/bin/library-inject.so:${extracted}/bin/SLSsteam.so";
         };
       };
       extraCompatPackages = [pkgs.proton-ge-bin];
@@ -19,6 +22,7 @@
     environment.systemPackages = with pkgs; [
       piper
       prismlauncher
+      samrewritten
     ];
   };
 }

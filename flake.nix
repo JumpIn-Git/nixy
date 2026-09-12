@@ -19,7 +19,6 @@
     # legacy stremio in cachix, this version is unsafe, use at your own risk
     nixpkgs-stremio.url = "github:nixos/nixpkgs/66d9241e3dc2296726dc522e62dbfe89c7b449f3";
     finix.url = "github:finix-community/finix";
-    community-modules.url = "github:finix-community/community-modules";
 
     nixos-hardware.url = "github:nixos/nixos-hardware";
     n-i-d = {
@@ -45,11 +44,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     slssteam = {
-      url = "github:acesls/slssteam";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    cr = {
-      url = "https://github.com/Selectively11/CloudRedirect/releases/download/v2.6.5/cloud_redirect.so";
+      url = "https://github.com/AceSLS/SLSsteam/releases/latest/download/SLSsteam-Any-release.7z";
       flake = false;
     };
   };

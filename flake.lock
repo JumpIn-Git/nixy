@@ -1,39 +1,12 @@
 {
   "nodes": {
-    "community-modules": {
-      "locked": {
-        "lastModified": 1788308969,
-        "narHash": "sha256-oLiE1NEKsu83a/eV5JM3CoIkGy9kVEKkQ9Z/QlgLjC0=",
-        "owner": "finix-community",
-        "repo": "community-modules",
-        "rev": "87e22f81c1cb800be7a07705b69af18f28b7ede6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "finix-community",
-        "repo": "community-modules",
-        "type": "github"
-      }
-    },
-    "cr": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-885yi32OEso1apSVNV9tdvSwx4tk+Taywrwfp9R6PPg=",
-        "type": "file",
-        "url": "https://github.com/Selectively11/CloudRedirect/releases/download/v2.6.5/cloud_redirect.so"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/Selectively11/CloudRedirect/releases/download/v2.6.5/cloud_redirect.so"
-      }
-    },
     "finix": {
       "locked": {
-        "lastModified": 1788925336,
-        "narHash": "sha256-MAN+6GJoQd7CCSGdzA/vovsj/FaTZrbEVHxoA5DE2h4=",
+        "lastModified": 1789218869,
+        "narHash": "sha256-MR5mm8PAcimi1G3qd/chPqsLAb3npMLegwaa07KdAHg=",
         "owner": "finix-community",
         "repo": "finix",
-        "rev": "07d94a712d63ee2ef949f2cfd5c8e0251a812966",
+        "rev": "2f98f629fa69fada31108252711586b681c5ebca",
         "type": "github"
       },
       "original": {
@@ -69,11 +42,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788947139,
-        "narHash": "sha256-0n6xBkp4yg+s/U+hzLlQ/7C4viRwTimqhS0jo1qrf4U=",
+        "lastModified": 1789209991,
+        "narHash": "sha256-4qKnnONBrMPS/Evi7QD+FmqrQcI96xWtn+GQPJHyqlE=",
         "owner": "greyxp1",
         "repo": "helium-flake",
-        "rev": "e63b28998a875122652a63f3ef0437feb3b08c40",
+        "rev": "6c03e42b208d2c8ba1b9a57bd4b623a8f79b86d3",
         "type": "github"
       },
       "original": {
@@ -276,8 +249,6 @@
     },
     "root": {
       "inputs": {
-        "community-modules": "community-modules",
-        "cr": "cr",
         "finix": "finix",
         "helium": "helium",
         "monique": "monique",
@@ -292,23 +263,15 @@
       }
     },
     "slssteam": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
+      "flake": false,
       "locked": {
-        "lastModified": 1788435466,
-        "narHash": "sha256-A6izbjMpkQpQxQDFHx5SXw5/1gwTTzO0Vz+1sjPTGdw=",
-        "owner": "acesls",
-        "repo": "slssteam",
-        "rev": "71021ad32e47ad4382717f63c53d2d06d44be3bd",
-        "type": "github"
+        "narHash": "sha256-Lv1RqseLG3AkJ9SPhe3+Vi6Hzb2obwcB1g01aUJlfp8=",
+        "type": "file",
+        "url": "https://github.com/AceSLS/SLSsteam/releases/latest/download/SLSsteam-Any-release.7z"
       },
       "original": {
-        "owner": "acesls",
-        "repo": "slssteam",
-        "type": "github"
+        "type": "file",
+        "url": "https://github.com/AceSLS/SLSsteam/releases/latest/download/SLSsteam-Any-release.7z"
       }
     },
     "wrappers": {
