@@ -27,7 +27,6 @@
     config.settings = let
       noctaliaExe = lib.getExe config.noctalia;
       null = _: {};
-      f = props: content: _: {inherit props content;};
     in {
       xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
       debug.honor-xdg-activation-with-invalid-serial = null;
@@ -74,6 +73,7 @@
       binds = let
         n = lib.range 1 9;
         ipc = cmd: {spawn = [noctaliaExe "ipc" "call"] ++ lib.splitString " " cmd;};
+        f = props: content: _: {inherit props content;};
       in
         {
           "Mod+X" = ipc "sessionMenu toggle";

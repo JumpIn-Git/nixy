@@ -43,7 +43,7 @@
     systemd.oomd = {
       enable = true;
       enableUserSlices = true;
-      enableSystemSlice = false;
+      enableSystemSlice = true;
     };
     boot.zswap.enable = true;
 
