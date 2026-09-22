@@ -9,6 +9,8 @@
       ../_hw.nix
     ];
     hardware.facter.reportPath = ../facter.json;
+    boot.kernelPackages = pkgs.linuxPackages_latest;
+    services.xserver.windowManager.oxwm.enable=true;
 
     services.tlp.pd.enable = true;
     services.fwupd.enable = true;
@@ -43,7 +45,7 @@
     systemd.oomd = {
       enable = true;
       enableUserSlices = true;
-      enableSystemSlice = false;
+      enableSystemSlice = true;
     };
     boot.zswap.enable = true;
 

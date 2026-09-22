@@ -27,7 +27,6 @@
     config.settings = let
       noctaliaExe = lib.getExe config.noctalia;
       null = _: {};
-      f = props: content: _: {inherit props content;};
     in {
       xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
       debug.honor-xdg-activation-with-invalid-serial = null;
@@ -48,10 +47,11 @@
       screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
       environment = {
         NIXOS_OZONE_WL = "1";
-        GDK_BACKEND = "wayland,x11";
-        SLD_VIDEODRIVER = "wayland";
+        GDK_BACKEND = "wayland,x11,*";
+        QT_QPA_PLATFORM = "wayland;xcb";
+        SDL_VIDEODRIVER = "wayland,x11";
+        CLUTTER_BACKEND = "wayland";
       };
-
       prefer-no-csd = null;
       animations.slowdown = 1.4;
       cursor = {
@@ -74,6 +74,7 @@
       binds = let
         n = lib.range 1 9;
         ipc = cmd: {spawn = [noctaliaExe "ipc" "call"] ++ lib.splitString " " cmd;};
+        f = props: content: _: {inherit props content;};
       in
         {
           "Mod+X" = ipc "sessionMenu toggle";
