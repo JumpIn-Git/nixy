@@ -47,10 +47,6 @@
       screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
       environment = {
         NIXOS_OZONE_WL = "1";
-        GDK_BACKEND = "wayland,x11,*";
-        QT_QPA_PLATFORM = "wayland;xcb";
-        SDL_VIDEODRIVER = "wayland,x11";
-        CLUTTER_BACKEND = "wayland";
       };
       prefer-no-csd = null;
       animations.slowdown = 1.4;
