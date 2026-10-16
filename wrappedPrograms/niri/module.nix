@@ -1,4 +1,4 @@
-{
+{inputs, ...}: {
   flake.wrappers.niri = {...} @ top: {
     config.install.modules.nixos = {
       config,
@@ -23,6 +23,7 @@
         };
         programs.nautilus-open-any-terminal.enable = true;
         programs.nautilus-open-any-terminal.terminal = "ghostty";
+        programs.ydotool.enable = true;
 
         services.displayManager.ly = {
           enable = true;
@@ -33,13 +34,20 @@
             text_in_center = true;
           };
         };
-        environment.systemPackages = [
+        environment.systemPackages = with pkgs; [
           wrapperCfg.noctalia
           wrapperCfg.terminal
-          pkgs.adwaita-icon-theme
-          pkgs.nautilus
-          pkgs.bibata-cursors
+          adwaita-icon-theme
+          nautilus
+          nautilus-python
+          (runCommand "localsend-nautilus" {} ''
+            mkdir -p $out/share/nautilus-python/extensions
+            ln -s ${inputs.localsend-nautilus}/src/localsend_extension.py $out/share/nautilus-python/extensions/localsend_extension.py
+          '')
+          bibata-cursors
         ];
+        environment.pathsToLink = ["/share/nautilus-python/extensions"];
+        environment.sessionVariables.NAUTILUS_4_EXTENSION_DIR = "${pkgs.nautilus-python}/lib/nautilus/extensions-4";
       };
     };
   };

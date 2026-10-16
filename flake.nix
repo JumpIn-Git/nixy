@@ -53,6 +53,10 @@
       url = "https://github.com/AceSLS/SLSsteam/releases/latest/download/SLSsteam-Any-release.7z";
       flake = false;
     };
+    localsend-nautilus = {
+      url = "github:damiansan239/localsend-nautilus-extension";
+      flake = false;
+    };
   };
 
   outputs = {

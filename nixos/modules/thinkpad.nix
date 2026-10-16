@@ -2,17 +2,31 @@
   flake.nixosModules.thinkpad = {
     inputs,
     pkgs,
+    self',
     ...
   }: {
     imports = [
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen1
+      inputs.self.wrappers.niri.install
       ../_hw.nix
     ];
     hardware.facter.reportPath = ../facter.json;
     boot.kernelPackages = pkgs.linuxPackages_latest;
-    services.xserver.windowManager.oxwm.enable=true;
-
     services.tlp.pd.enable = true;
+    services.xserver.windowManager.oxwm.enable = true;
+
+    wrappers.niri = {
+      enable = true;
+      noctalia = self'.packages.noctalia.wrap {
+        configPath = "/home/cinnamon/nix/config/noctalia/"; # use impure path so i can use gui
+      };
+    };
+    qt = {
+      enable = true;
+      platformTheme = "gnome";
+      style = "adwaita-dark";
+    };
+
     services.fwupd.enable = true;
     hardware.bluetooth = {
       enable = true;
@@ -20,6 +34,7 @@
       settings.General.Experimental = true;
     };
     environment.systemPackages = with pkgs; [
+      kdePackages.qqc2-desktop-style
       firmware-updater
       sbctl
       overskride

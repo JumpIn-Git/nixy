@@ -42,6 +42,7 @@
         noctaliaExe
         (lib.getExe pkgs.wl-gammarelay-rs)
         [(lib.getExe pkgs.xhost) "+si:localuser:root"]
+        (lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.go-clicker)
       ];
       hotkey-overlay.skip-at-startup = null;
       screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
@@ -78,6 +79,7 @@
           "Mod+S".spawn = lib.getExe config.wlr-which-key;
           "Mod+E".spawn = lib.getExe pkgs.nautilus;
           "Mod+T".spawn = lib.getExe config.terminal;
+          "Mod+C".spawn-sh = "kill -USR1 $(cat /tmp/autoclick_daemon.pid)";
 
           XF86AudioRaiseVolume = f {allow-when-locked = true;} <| ipc "volume increase";
           XF86AudioLowerVolume = f {allow-when-locked = true;} <| ipc "volume decrease";
