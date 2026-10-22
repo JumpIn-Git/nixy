@@ -13,6 +13,8 @@
         wrapProgram $out/bin/go-clicker \
           --prefix PATH : ${pkgs.lib.makeBinPath [pkgs.ydotool pkgs.libnotify]}
       '';
+
+      meta.mainProgram = "go-clicker";
     };
   };
 }

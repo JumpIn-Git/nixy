@@ -1,4 +1,4 @@
-{
+{inputs, ...}: {
   flake.wrappers.noctalia = {
     pkgs,
     wlib,
@@ -11,7 +11,7 @@
       type = lib.types.str;
       default = toString ../config/noctalia;
     };
-    config.package = pkgs.noctalia-shell;
+    config.package = inputs.noctalia.legacyPackages.${pkgs.stdenv.hostPlatform.system}.noctalia-shell;
     config.runtimePkgs = with pkgs; [
       mission-center
       gpu-screen-recorder

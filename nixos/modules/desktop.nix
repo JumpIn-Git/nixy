@@ -18,9 +18,7 @@
       gnome-calculator
       cheese
 
-      (discord.override {
-        withOpenASAR = true;
-      })
+      discord
       qbittorrent
       inputs'.helium.packages.default
       proton-pass
@@ -32,7 +30,7 @@
       plugins = with pkgs.obs-studio-plugins; [
         input-overlay
       ];
-      enableVirtualCamera = true;
+      # enableVirtualCamera = true;
     };
 
     xdg.mime.defaultApplications = {

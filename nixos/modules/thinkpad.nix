@@ -14,6 +14,10 @@
     boot.kernelPackages = pkgs.linuxPackages_latest;
     services.tlp.pd.enable = true;
     services.xserver.windowManager.oxwm.enable = true;
+    services.tlp.settings = {
+      START_CHARGE_THRESH_BAT0 = 75;
+      STOP_CHARGE_THRESH_BAT0 = 80;
+    };
 
     wrappers.niri = {
       enable = true;
@@ -79,5 +83,9 @@
     };
 
     system.stateVersion = "25.11";
+    # systemd.tmpfiles.rules = [
+    #   "w /sys/class/power_supply/BAT0/charge_control_start_threshold - - - - 75"
+    #   "w /sys/class/power_supply/BAT0/charge_control_end_threshold - - - - 80"
+    # ];
   };
 }

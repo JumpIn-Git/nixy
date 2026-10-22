@@ -14,8 +14,8 @@
         completions: {
           external: {
             enable: true
-            completer: {|spans|
-              carapace $spans.0 nushell ...$spans | from json
+            completer: {|place: record|
+                carapace ($place.command | first) nushell ...$place.command | from json
             }
           }
         }

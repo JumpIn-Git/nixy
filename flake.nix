@@ -16,8 +16,8 @@
       url = "github:numtide/nixpkgs-unfree";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # legacy stremio in cachix, this version is unsafe, use at your own risk
-    nixpkgs-stremio.url = "github:nixos/nixpkgs/66d9241e3dc2296726dc522e62dbfe89c7b449f3";
+    noctalia.url = "github:nixos/nixpkgs/8edc0c72e3a38faf5434e40d1f19431125fe4b30";
+    nixpkgs-stremio.url = "github:nixos/nixpkgs/66d9241e3dc2296726dc522e62dbfe89c7b449f3"; # legacy stremio in cachix, use at your own risk
     finix.url = "github:finix-community/finix";
 
     nixos-hardware = {
@@ -56,6 +56,10 @@
     localsend-nautilus = {
       url = "github:damiansan239/localsend-nautilus-extension";
       flake = false;
+    };
+    prism = {
+      url = "github:diegiwg/prismlauncher-cracked";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

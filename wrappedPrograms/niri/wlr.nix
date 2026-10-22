@@ -43,11 +43,6 @@
             cmd = "${noctaliaExe} ipc call wallpaper toggle";
             desc = "Set wallpaper";
           }
-          {
-            key = "b";
-            cmd = "${noctaliaExe} ipc call plugin:battery-threshold togglePanel";
-            desc = "Battery threshold";
-          }
         ];
       };
     };

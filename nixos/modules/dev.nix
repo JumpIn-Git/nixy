@@ -1,5 +1,9 @@
 {
-  flake.nixosModules.dev = {pkgs, ...}: {
+  flake.nixosModules.dev = {
+    pkgs,
+    lib,
+    ...
+  }: {
     programs.direnv.enable = true;
     environment.localBinInPath = true;
     environment.systemPackages = with pkgs; [
@@ -24,10 +28,8 @@
       basedpyright
       ruff
     ];
-    nixpkgs.config.permittedInsecurePackages = [
-      "ventoy-1.1.17"
-      "ventoy-gtk3-1.1.17"
-    ];
+    nixpkgs.config.allowInsecurePredicate = pkg:
+      lib.hasPrefix "ventoy" (lib.getName pkg);
 
     environment.variables = {
       EDITOR = "zeditor --wait";
