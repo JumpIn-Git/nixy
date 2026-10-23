@@ -2,11 +2,11 @@
   "nodes": {
     "finix": {
       "locked": {
-        "lastModified": 1792552401,
-        "narHash": "sha256-Fua+PKbzkPSbKKPhoqPFUcWWuNb7oTPn/QmDU1qqEnQ=",
+        "lastModified": 1792787232,
+        "narHash": "sha256-bnSAeEGdd85dD2+iB/GEBm32s7BGmEfYHk7M/dxse6E=",
         "owner": "finix-community",
         "repo": "finix",
-        "rev": "5211bd4ed50f73b1c08df7e05a549502d4cff738",
+        "rev": "32b3c2d84bd7773ff84b63e1a5ddc5f54524c8bf",
         "type": "github"
       },
       "original": {
@@ -259,11 +259,11 @@
       "locked": {
         "narHash": "sha256-BlDzV5hVAGMVHftuUUicJXzKZXEi22mAqlyH4OyKHBc=",
         "type": "file",
-        "url": "https://github.com/AceSLS/SLSsteam/releases/latest/download/SLSsteam-Any-release.7z"
+        "url": "https://github.com/AceSLS/SLSsteam/releases/download/20261014151919/SLSsteam-Any-release.7z"
       },
       "original": {
         "type": "file",
-        "url": "https://github.com/AceSLS/SLSsteam/releases/latest/download/SLSsteam-Any-release.7z"
+        "url": "https://github.com/AceSLS/SLSsteam/releases/download/20261014151919/SLSsteam-Any-release.7z"
       }
     },
     "wrappers": {

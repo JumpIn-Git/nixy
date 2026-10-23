@@ -7,12 +7,10 @@
     programs.steam = {
       enable = true;
       package = pkgs.steam.override {
-        extraEnv = let
-          extracted = pkgs.runCommand "extract-7z" {nativeBuildInputs = [pkgs.p7zip];} ''
-            7z x ${inputs.slssteam} -o$out
+        extraEnv = {
+          LD_AUDIT = pkgs.runCommand "SLSsteam.so" {nativeBuildInputs = [pkgs.p7zip];} ''
+            7z e -so ${inputs.slssteam} bin/SLSsteam.so > $out
           '';
-        in {
-          LD_AUDIT = "${extracted}/bin/library-inject.so:${extracted}/bin/SLSsteam.so";
         };
       };
       extraCompatPackages = [pkgs.proton-ge-bin];
