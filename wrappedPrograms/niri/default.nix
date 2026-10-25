@@ -50,7 +50,6 @@
         NIXOS_OZONE_WL = "1";
       };
       prefer-no-csd = null;
-      animations.slowdown = 1.4;
       cursor = {
         xcursor-theme = "Bibata-Modern-Classic";
         xcursor-size = 20;
