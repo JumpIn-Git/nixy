@@ -53,6 +53,14 @@
         enable = true;
         efiSupport = true;
         device = "nodev";
+        extraEntries = ''
+          menuentry 'Windows' --class windows --class os {
+            insmod part_gpt
+            insmod fat
+            search --no-floppy --fs-uuid --set=root 082E-F7DC
+            chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+          }
+        '';
       };
     };
     swapDevices = [
@@ -67,6 +75,7 @@
       enableSystemSlice = true;
     };
     boot.zswap.enable = true;
+    systemd.coredump.settings.Coredump.MaxUse = "1G";
 
     programs.appimage = {
       enable = true;

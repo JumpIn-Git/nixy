@@ -29,6 +29,7 @@
       enable = true;
       plugins = with pkgs.obs-studio-plugins; [
         input-overlay
+        obs-pipewire-audio-capture
       ];
       # enableVirtualCamera = true;
     };

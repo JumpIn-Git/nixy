@@ -8,8 +8,8 @@
   "videoCodec": "hevc",
   "quality": "ultra",
   "colorRange": "limited",
-  "showCursor": true,
-  "copyToClipboard": true,
+  "showCursor": false,
+  "copyToClipboard": false,
   "audioSource": "default_output",
   "videoSource": "portal",
   "resolution": "1920x1080",
@@ -18,5 +18,5 @@
   "customReplayDuration": "30",
   "replayStorage": "ram",
   "restorePortalSession": false,
-  "customFrameRate": "40"
+  "customFrameRate": "50"
 }

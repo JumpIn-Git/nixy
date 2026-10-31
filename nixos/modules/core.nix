@@ -43,6 +43,7 @@
       usbutils
       file
       tree
+      unzip
     ];
 
     networking.hostName = "nixos"; # Define your hostname.
