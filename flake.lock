@@ -2,11 +2,11 @@
   "nodes": {
     "finix": {
       "locked": {
-        "lastModified": 1792880696,
-        "narHash": "sha256-8y1TF7wR2AJZlO/y4OWgsFX3AwpZdDk1KLLRl24RSVc=",
+        "lastModified": 1793578751,
+        "narHash": "sha256-9Ow2khVMSJ5aBMSuruFhPRC0xvBAFsTNSKyVgbY9QCY=",
         "owner": "finix-community",
         "repo": "finix",
-        "rev": "0ad3b1b30f3aa82da5f747c8fb6104159ebdd38b",
+        "rev": "6e48321336bb5d43b0e8b2ae56726c09844b26d4",
         "type": "github"
       },
       "original": {
@@ -25,32 +25,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1793235424,
-        "narHash": "sha256-iGDnhYRW9OWECZscJcfXJOrvf8CKSJSq2qD/uIxem3c=",
+        "lastModified": 1793642060,
+        "narHash": "sha256-MVbh0oAug5VtIONvIKcygbraSkG1SfNOsLgsqF3nf08=",
         "owner": "greyxp1",
         "repo": "helium-flake",
-        "rev": "3d02ce6059dd9ff39f99b0f34bb9d81e48dd8473",
+        "rev": "534bd3cc0dbb398086af1585cff237456c731977",
         "type": "github"
       },
       "original": {
         "owner": "greyxp1",
         "repo": "helium-flake",
-        "type": "github"
-      }
-    },
-    "libnbtplusplus": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1772016279,
-        "narHash": "sha256-7itkptyjoRcXfGLwg1/jxajetZ3a4mDc66+w4X6yW8s=",
-        "owner": "PrismLauncher",
-        "repo": "libnbtplusplus",
-        "rev": "687e43031df0dc641984b4256bcca50d5b3f7de3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "PrismLauncher",
-        "repo": "libnbtplusplus",
         "type": "github"
       }
     },
@@ -90,6 +74,22 @@
         "type": "github"
       }
     },
+    "mpris-bridge": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1788304371,
+        "narHash": "sha256-eAVblz6x6RwZOsOll/domzIFXxqhyscKCfnsFh8B4aw=",
+        "owner": "thedoctorttv",
+        "repo": "mpris-bridge",
+        "rev": "c18665ea1abc5a8d75659a1d12f4464436899faf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "thedoctorttv",
+        "repo": "mpris-bridge",
+        "type": "github"
+      }
+    },
     "n-i-d": {
       "inputs": {
         "nixpkgs": [
@@ -97,11 +97,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792915725,
-        "narHash": "sha256-v75hPw5NJ+mRRcwUzKi2OQtVSVv1hgq6ceAlPQB2kEE=",
+        "lastModified": 1793543282,
+        "narHash": "sha256-PHtGxKYM99f8WhGR5YD7iiCiwemKa2wUD4yVI2oALFg=",
         "owner": "nix-community",
         "repo": "nix-index-database",
-        "rev": "93696586f3463024cceb089353539be95a38ae2b",
+        "rev": "cee0f879d338cf08f814210fa6c2b280594ade0a",
         "type": "github"
       },
       "original": {
@@ -132,11 +132,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1793110635,
-        "narHash": "sha256-yXRSdZdZZqccEL+j11lc1gFG1f7V5j8N7oPBTHwf7n4=",
-        "rev": "31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+        "lastModified": 1793540411,
+        "narHash": "sha256-us2GRWGXbOQpN1blyJGvmdx+g4bv9GoFYq5iiOHRiZ8=",
+        "rev": "0bb2eedc20e4739f29e8045034f2828ad7054f8f",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1103272.31ecbaca1bde/nixexprs.tar.zst"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1106360.0bb2eedc20e4/nixexprs.tar.zst"
       },
       "original": {
         "type": "tarball",
@@ -202,37 +202,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1790898470,
-        "narHash": "sha256-zTwuwezD0w3hpga6a6P8emidzAZFyWqlNeRBlpWOOl8=",
+        "lastModified": 1793576659,
+        "narHash": "sha256-V1h85lUaJBQoHFrB2vpXZOE0Ju1MYSnIpsehoVZYlDo=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "024633cd702b10285db5cb19b40ad48d2399ba60",
+        "rev": "ea2630b7470978622c7689a1ff75d2b389175399",
         "type": "github"
       },
       "original": {
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "type": "github"
-      }
-    },
-    "prism": {
-      "inputs": {
-        "libnbtplusplus": "libnbtplusplus",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1784295107,
-        "narHash": "sha256-d6En6xP3XWvVj0/QlgGad6zxjWknVxTttVk+G7HLFBQ=",
-        "owner": "diegiwg",
-        "repo": "prismlauncher-cracked",
-        "rev": "d393323fdc52ef645c48a04ca73aff2bbe24ffc9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "diegiwg",
-        "repo": "prismlauncher-cracked",
         "type": "github"
       }
     },
@@ -242,6 +221,7 @@
         "helium": "helium",
         "localsend-nautilus": "localsend-nautilus",
         "monique": "monique",
+        "mpris-bridge": "mpris-bridge",
         "n-i-d": "n-i-d",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
@@ -249,7 +229,6 @@
         "nixpkgs-unfree": "nixpkgs-unfree",
         "noctalia": "noctalia",
         "parts": "parts",
-        "prism": "prism",
         "slssteam": "slssteam",
         "wrappers": "wrappers"
       }
@@ -273,11 +252,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793125706,
-        "narHash": "sha256-QmYgTfZxdZdO3CkMnYtK8Mxusp4LKNTHpdyjrza/3C8=",
+        "lastModified": 1793683960,
+        "narHash": "sha256-0xLhR6xGbG2oC5RpJYf/o0Tl2nlUUh3H9pulE+ogK0k=",
         "owner": "birdeehub",
         "repo": "nix-wrapper-modules",
-        "rev": "41263424578dbbcdda3e80f9725449afcf9b3e70",
+        "rev": "eb41f7cdde918a6467715b189cdadb6d476456c8",
         "type": "github"
       },
       "original": {

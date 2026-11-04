@@ -62,5 +62,9 @@
       LC_TELEPHONE = "nl_NL.UTF-8";
       LC_TIME = "nl_NL.UTF-8";
     };
+
+    security.sudo.extraConfig = ''
+      Defaults pwfeedback
+    '';
   };
 }

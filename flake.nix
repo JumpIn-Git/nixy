@@ -57,9 +57,9 @@
       url = "github:damiansan239/localsend-nautilus-extension";
       flake = false;
     };
-    prism = {
-      url = "github:diegiwg/prismlauncher-cracked";
-      inputs.nixpkgs.follows = "nixpkgs";
+    mpris-bridge = {
+      url = "github:thedoctorttv/mpris-bridge";
+      flake = false;
     };
   };
 

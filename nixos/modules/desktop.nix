@@ -22,6 +22,7 @@
       qbittorrent
       inputs'.helium.packages.default
       proton-pass
+      obs-cli
     ];
     programs.localsend.enable = true;
     programs.kclock.enable = true;
@@ -30,6 +31,7 @@
       plugins = with pkgs.obs-studio-plugins; [
         input-overlay
         obs-pipewire-audio-capture
+        obs-vaapi
       ];
       # enableVirtualCamera = true;
     };

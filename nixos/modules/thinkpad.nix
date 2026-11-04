@@ -3,12 +3,17 @@
     inputs,
     pkgs,
     self',
+    lib,
     ...
   }: {
     imports = [
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen1
       inputs.self.wrappers.niri.install
       ../_hw.nix
+    ];
+    hardware.graphics.extraPackages = with pkgs; [
+      mesa
+      libva
     ];
     hardware.facter.reportPath = ../facter.json;
     boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -24,6 +29,9 @@
       noctalia = self'.packages.noctalia.wrap {
         configPath = "/home/cinnamon/nix/config/noctalia/"; # use impure path so i can use gui
       };
+      settings.spawn-at-startup = [
+        (lib.getExe self'.packages.mpris-bridge)
+      ];
     };
     qt = {
       enable = true;
@@ -80,6 +88,9 @@
     programs.appimage = {
       enable = true;
       binfmt = true;
+      package = pkgs.appimage-run.override {
+        extraPkgs = p: [p.libgpg-error];
+      };
     };
 
     services.pipewire = {

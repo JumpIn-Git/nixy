@@ -7,7 +7,7 @@
 
       vendorHash = null;
 
-      nativeBuildInputs = [ pkgs.makeWrapper ];
+      nativeBuildInputs = [pkgs.makeWrapper];
 
       postInstall = ''
         wrapProgram $out/bin/go-clicker \
