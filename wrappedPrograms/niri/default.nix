@@ -46,9 +46,7 @@
       ];
       hotkey-overlay.skip-at-startup = null;
       screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
-      environment = {
-        NIXOS_OZONE_WL = "1";
-      };
+      environment.NIXOS_OZONE_WL = "1";
       prefer-no-csd = null;
       cursor = {
         xcursor-theme = "Bibata-Modern-Classic";

@@ -17,11 +17,13 @@
     ];
     hardware.facter.reportPath = ../facter.json;
     boot.kernelPackages = pkgs.linuxPackages_latest;
-    services.tlp.pd.enable = true;
     services.xserver.windowManager.oxwm.enable = true;
-    services.tlp.settings = {
-      START_CHARGE_THRESH_BAT0 = 75;
-      STOP_CHARGE_THRESH_BAT0 = 80;
+    services.tlp = {
+      pd.enable = true;
+      settings = {
+        START_CHARGE_THRESH_BAT0 = 75;
+        STOP_CHARGE_THRESH_BAT0 = 80;
+      };
     };
 
     wrappers.niri = {

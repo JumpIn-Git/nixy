@@ -50,7 +50,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     slssteam = {
-      url = "https://github.com/AceSLS/SLSsteam/releases/download/20261014151919/SLSsteam-Any-release.7z";
+      url = "https://github.com/AceSLS/SLSsteam/releases/download/20261112130346/SLSsteam-Any-release.7z";
       flake = false;
     };
     localsend-nautilus = {

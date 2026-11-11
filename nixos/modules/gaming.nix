@@ -8,8 +8,8 @@
       enable = true;
       package = pkgs.steam.override {
         extraEnv = {
-          LD_AUDIT = pkgs.runCommand "SLSsteam.so" {nativeBuildInputs = [pkgs.p7zip];} ''
-            7z e -so ${inputs.slssteam} bin/SLSsteam.so > $out
+          LD_AUDIT = pkgs.runCommand "SLSsteam.so" {} ''
+            ${pkgs.p7zip}/bin/7z e -so ${inputs.slssteam} bin/SLSsteam.so > $out
           '';
         };
       };

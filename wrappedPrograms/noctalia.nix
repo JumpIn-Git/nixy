@@ -16,13 +16,6 @@
       mission-center
       gpu-screen-recorder
       sqlite
-
-      slurp
-      wl-screenrec
-      ffmpeg
-      jq
-      python3
-      python3Packages.pygobject3
     ];
     config.env.NOCTALIA_CONFIG_DIR = config.configPath;
   };

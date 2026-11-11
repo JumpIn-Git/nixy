@@ -19,31 +19,26 @@
           noctaliaExe = lib.getExe config.noctalia;
         in [
           {
-            key = "m";
             cmd = lib.getExe inputs.monique.packages.${system}.default;
             desc = "Display configuration";
           }
           {
-            key = "g";
             cmd = lib.getExe pkgs.wl-gammarelay-applet;
             desc = "Gammarelay applet";
           }
           {
-            key = "c";
             cmd = "${noctaliaExe} ipc call controlCenter toggle";
             desc = "Control center";
           }
           {
-            key = "s";
             cmd = "${noctaliaExe} ipc call settings toggle";
             desc = "Settings";
           }
           {
-            key = "w";
             cmd = "${noctaliaExe} ipc call wallpaper toggle";
-            desc = "Set wallpaper";
+            desc = "Wallpaper";
           }
-        ];
+        ]|>lib.map(a: a // {key=builtins.substring 0 1 a.desc |> lib.toLower;});
       };
     };
   };

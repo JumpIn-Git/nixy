@@ -9,6 +9,7 @@
         setuptools
         flask
         certifi
+        dbus-python
       ];
       meta.mainProgram = "mpris-bridge";
     };
