@@ -1,12 +1,9 @@
 {
   nixConfig = {
-    extra-substituters = ["https://noctalia.cachix.org" "https://niri.cachix.org" "https://jump1n.cachix.org" "https://lanzaboote.cachix.org" "https://finix.cachix.org"];
+    extra-substituters = ["https://noctalia.cachix.org" "https://jump1n.cachix.org"];
     extra-trusted-public-keys = [
       "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
-      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
       "jump1n.cachix.org-1:duG5cdEwJOCp/NJJ18hSOk+0NPWEDcjeGA1/fv7WlLA="
-      "lanzaboote.cachix.org-1:Nt9//zGmqkg1k5iu+B3bkj3OmHKjSw9pvf3faffLLNk="
-      "finix.cachix.org-1:0ejikHDeCp0UErsduUUHcg9IJczY2/h2e5132Z/As/c="
     ];
     extra-experimental-features = ["nix-command" "flakes" "pipe-operators"];
   };
@@ -18,7 +15,6 @@
     };
     noctalia.url = "github:nixos/nixpkgs/8edc0c72e3a38faf5434e40d1f19431125fe4b30";
     nixpkgs-stremio.url = "github:nixos/nixpkgs/66d9241e3dc2296726dc522e62dbfe89c7b449f3"; # legacy stremio in cachix, use at your own risk
-    finix.url = "github:finix-community/finix";
 
     nixos-hardware = {
       url = "github:nixos/nixos-hardware";

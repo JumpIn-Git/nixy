@@ -10,6 +10,7 @@
       uv
       gh
       lazygit
+      git
       sqlc
       goose
       zed-editor

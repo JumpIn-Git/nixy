@@ -17,19 +17,11 @@
     ];
     hardware.facter.reportPath = ../facter.json;
     boot.kernelPackages = pkgs.linuxPackages_latest;
-    services.xserver.windowManager.oxwm.enable = true;
-    services.tlp = {
-      pd.enable = true;
-      settings = {
-        START_CHARGE_THRESH_BAT0 = 75;
-        STOP_CHARGE_THRESH_BAT0 = 80;
-      };
-    };
 
     wrappers.niri = {
       enable = true;
       noctalia = self'.packages.noctalia.wrap {
-        configPath = "/home/cinnamon/nix/config/noctalia/"; # use impure path so i can use gui
+        configPath = "/home/cinnamon/nix/config/noctalia/";
       };
       settings.spawn-at-startup = [
         (lib.getExe self'.packages.mpris-bridge)
@@ -41,16 +33,34 @@
       style = "adwaita-dark";
     };
 
-    services.fwupd.enable = true;
+    services = {
+      fwupd.enable = true;
+      tlp = {
+        pd.enable = true;
+        settings = {
+          START_CHARGE_THRESH_BAT0 = 75;
+          STOP_CHARGE_THRESH_BAT0 = 80;
+        };
+      };
+      pipewire = {
+        enable = true;
+        alsa = {
+          enable = true;
+          support32Bit = true;
+        };
+        pulse.enable = true;
+      };
+    };
     hardware.bluetooth = {
       enable = true;
       powerOnBoot = true;
-      settings.General.Experimental = true;
+      settings.General = {
+        Experimental = true;
+        Disable = "Sink";
+      };
     };
     environment.systemPackages = with pkgs; [
-      kdePackages.qqc2-desktop-style
-      firmware-updater
-      sbctl
+      bluejay
       overskride
     ];
 
@@ -79,13 +89,15 @@
         size = 4 * 1024;
       }
     ];
-    systemd.oomd = {
-      enable = true;
-      enableUserSlices = true;
-      enableSystemSlice = true;
+    systemd = {
+      oomd = {
+        enable = true;
+        enableUserSlices = true;
+        enableSystemSlice = true;
+      };
+      coredump.settings.Coredump.MaxUse = "1G";
     };
     boot.zswap.enable = true;
-    systemd.coredump.settings.Coredump.MaxUse = "1G";
 
     programs.appimage = {
       enable = true;
@@ -95,19 +107,6 @@
       };
     };
 
-    services.pipewire = {
-      enable = true;
-      alsa = {
-        enable = true;
-        support32Bit = true;
-      };
-      pulse.enable = true;
-    };
-
     system.stateVersion = "25.11";
-    # systemd.tmpfiles.rules = [
-    #   "w /sys/class/power_supply/BAT0/charge_control_start_threshold - - - - 75"
-    #   "w /sys/class/power_supply/BAT0/charge_control_end_threshold - - - - 80"
-    # ];
   };
 }
