@@ -9,8 +9,12 @@
     imports = [
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen1
       inputs.self.wrappers.niri.install
+      inputs.rikka.nixosModules.default
       ../_hw.nix
     ];
+    rikka.enable = true;
+    services.power-profiles-daemon.enable = false;
+    services.geoclue2.enable = false;
     hardware.graphics.extraPackages = with pkgs; [
       mesa
       libva
@@ -44,10 +48,6 @@
       };
       pipewire = {
         enable = true;
-        alsa = {
-          enable = true;
-          support32Bit = true;
-        };
         pulse.enable = true;
       };
     };

@@ -34,6 +34,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    rikka.url = "github:project-rikka/packages";
     helium = {
       url = "github:greyxp1/helium-flake";
       inputs = {
