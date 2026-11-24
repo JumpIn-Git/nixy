@@ -46,10 +46,6 @@
       url = "github:ToRvaLDz/monique";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    slssteam = {
-      url = "https://github.com/AceSLS/SLSsteam/releases/download/20261112130346/SLSsteam-Any-release.7z";
-      flake = false;
-    };
     localsend-nautilus = {
       url = "github:damiansan239/localsend-nautilus-extension";
       flake = false;

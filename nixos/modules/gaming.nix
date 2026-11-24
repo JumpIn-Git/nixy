@@ -1,19 +1,25 @@
 {
-  flake.nixosModules.gaming = {
-    pkgs,
-    inputs,
-    ...
-  }: {
-    programs.steam = {
-      enable = true;
-      package = pkgs.steam.override {
-        extraEnv = {
-          # LD_AUDIT = pkgs.runCommand "SLSsteam.so" {} ''
-          #   ${pkgs.p7zip}/bin/7z e -so ${inputs.slssteam} bin/SLSsteam.so > $out
-          # '';
+  flake.nixosModules.gaming = {pkgs, ...}: {
+    programs = {
+      steam = {
+        enable = true;
+        extraCompatPackages = [pkgs.proton-ge-bin];
+      };
+      gamescope = {
+        enable = true;
+        capSysNice = true;
+      };
+      gamemode = {
+        enable = true;
+        enableRenice = true;
+        settings = {
+          general.renice = 10;
+          custom = {
+            start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
+            end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
+          };
         };
       };
-      extraCompatPackages = [pkgs.proton-ge-bin];
     };
 
     services.ratbagd.enable = true;

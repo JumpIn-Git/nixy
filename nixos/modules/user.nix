@@ -14,7 +14,7 @@
     };
     users.users.cinnamon = {
       isNormalUser = true;
-      extraGroups = ["wheel" "networkmanager" "input" "ydotool"];
+      extraGroups = ["wheel" "networkmanager" "input" "ydotool" "gamemode"];
       shell = config.wrappers.nu.wrapper;
     };
   };

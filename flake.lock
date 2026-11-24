@@ -102,11 +102,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795018746,
-        "narHash": "sha256-glQAHvZGgBVjzGIWgIZYSf3X10gvtO2LPR4rtyP/Soc=",
+        "lastModified": 1795505195,
+        "narHash": "sha256-HoBMYHQYxai9NTe3ED6MrZwo2S56ocxgMwTgwmybjJM=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "33475966110df258f52d05ec4d4cd6394637cbb9",
+        "rev": "ff49dbf39553717ac8e0f4d5085fa0ca10c1031f",
         "type": "github"
       },
       "original": {
@@ -221,11 +221,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1795257021,
-        "narHash": "sha256-PQskw47MeuyLJWUswvVuSdwFOKZEGf76kz5juqydXO0=",
+        "lastModified": 1795532908,
+        "narHash": "sha256-Y9XyE7nnOkUEOODzgPCsnuEXw8LqHFO11e/cXac42xo=",
         "owner": "project-rikka",
         "repo": "packages",
-        "rev": "88767ab83cd9379c7fccb493d37849ae240ec141",
+        "rev": "c6b40a498864af34ae7dde458af9897c65d8edf5",
         "type": "github"
       },
       "original": {
@@ -271,11 +271,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795325889,
-        "narHash": "sha256-5Y9aPaUNfQB8eHV26/t70fdJhZJ0DA0Qy+mVLSEhxv0=",
+        "lastModified": 1795484136,
+        "narHash": "sha256-F6ZSjFLSS6F3vv71/fIr7PLxQQZHuEcCIVBYDfIis2I=",
         "owner": "birdeehub",
         "repo": "nix-wrapper-modules",
-        "rev": "c0231014587bdeb0edd730f6689868b2c7e11954",
+        "rev": "dd4d2130b3e1df56837b11a9be025fcd2774030c",
         "type": "github"
       },
       "original": {
